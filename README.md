@@ -1,0 +1,2 @@
+# ManagerSoft
+Tracks inventory
