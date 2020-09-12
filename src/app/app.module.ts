@@ -4,6 +4,10 @@ import { RouterModule} from '@angular/router';
 import { AppRoutes } from './app.routing';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatFormFieldModule, MatFormField} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,13 +18,16 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { SigninComponent } from './pages/signin/signin.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     BaseLayoutComponent,
     AuthLayoutComponent,
-    HomeComponent
+    HomeComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +40,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatSliderModule,
+    MatFormFieldModule, 
+    MatCardModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
