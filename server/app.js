@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 
+const UserApi = require('./routes/user-api');
+const SessionApi = require('./routes/session-api');
+
 /**
  * App configurations
  */
@@ -21,10 +24,10 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
 /**
  * Variables
  */
-const port = 3200; // server port
+const port = 3000; // server port
 
 // TODO: This line will need to be replaced with your actual database connection string
-const conn = 'mongodb+srv://admin:admin@cluster0.djivq.gcp.mongodb.net/gop-inventory?retryWrites=true&w=majority';
+const conn = 'mongodb+srv://admin:admin@cluster0.djivq.gcp.mongodb.net/brcs?retryWrites=true&w=majority';
 
 /**
  * Database connection
@@ -42,6 +45,8 @@ mongoose.connect(conn, {
 /**
  * API(s)
  */
+app.use('/api/users', UserApi);
+app.use('/api/session', SessionApi);
 
 /**
  * Create and start server

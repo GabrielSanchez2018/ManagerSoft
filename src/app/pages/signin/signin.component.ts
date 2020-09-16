@@ -8,12 +8,9 @@ Assignment: sign in component
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
+//import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { FnParam } from '@angular/compiler/src/output/output_ast';
-import { ɵparseCookieValue } from '@angular/common';
-import { SSL_OP_COOKIE_EXCHANGE, SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
-import { strictEqual } from 'assert';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-signin',
@@ -27,9 +24,9 @@ export class SigninComponent implements OnInit {
   expires: number;
   date: number
 
-  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private http: HttpClient ) {
+  constructor(private router: Router, private fb: FormBuilder,private cookieService: CookieService, private http: HttpClient ) {
   }
-  
+
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -41,10 +38,10 @@ export class SigninComponent implements OnInit {
   signin() {
     const username = this.form.controls.username.value
     const password = this.form.controls.password.value
-    const cookie = "sessionuser=hussein; samesite=strict; secure"
+
 
     this.http.post('/api/session/signin', {
-      cookie,
+
       username,
       password
     }).subscribe(res => {

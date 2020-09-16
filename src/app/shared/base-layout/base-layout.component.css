@@ -6,11 +6,13 @@
 
 .navbar-container {
   padding: 5px;
+
 }
 
 .navbar-link {
   font-size: 24px;
   font-weight: lighter;
+  color: white;
 }
 
 .main-content {
@@ -36,4 +38,12 @@
 
 .bu-link:hover {
   text-decoration: underline;
+}
+
+.mat-toolbar{
+  background-color: black;
+}
+
+.mat-toolbar-row {
+  color: white;
 }

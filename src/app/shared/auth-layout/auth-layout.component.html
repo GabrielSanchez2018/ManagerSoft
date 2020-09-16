@@ -1,1 +1,66 @@
-<p>auth-layout works!</p>
+<div fxLayout="column">
+
+  <!-- navigation -->
+  <nav fxFlex>
+    <mat-toolbar class="toolbar">
+      <!-- navbar container -->
+      <div class="navbar-container">
+        <!-- logo -->
+
+        <!-- <img src="../../../assets/images/gop.png" alt="Britanny" style="width: 200px;" >
+ -->
+
+      </div>
+
+    </mat-toolbar>
+  </nav>
+
+  <!-- main content -->
+  <!-- <mat-card style="width: 90%; margin: 0 auto;">
+  <mat-grid-list cols="2" rowHeight="2:2">
+    <mat-grid-tile>
+      <mat-card>
+        <img src="../../../assets/images/gop.png" alt="Britanny" style="width: 200px;" >
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div fxFlex>
+        <main class="main-content" fxFlex="100%;">
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card> -->
+<!-- <br><br>
+ <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+      <img src="../../../assets/images/verticalgop.png" alt="gop" class="gopLogo" >
+		</div>
+		<div class="col-md-8">
+        <main class="main-content" fxFlex="100%;">
+          <router-outlet></router-outlet>
+        </main>
+</div>
+  </div>
+</div> -->
+<div class="newForm">
+
+  <router-outlet></router-outlet>
+</div>
+
+
+  <!-- footer -->
+  <div fxFlex>
+    <footer class="footer">
+      <mat-toolbar class="footer-content">
+        <p>
+          &copy; {{year | date: 'yyyy'}} | Manager Soft
+
+        </p>
+      </mat-toolbar>
+    </footer>
+  </div>
+
+</div>

@@ -5,9 +5,14 @@ import { AppRoutes } from './app.routing';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatFormFieldModule, MatFormField} from '@angular/material/form-field';
+import {MatFormFieldModule, MatFormField, } from '@angular/material/form-field';
+import { MatInputModule, MatOptionModule, MatSelectModule, MatMenuModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatListModule} from '@angular/material/list';
+import { CookieService } from 'ngx-cookie-service';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { RoleGuard } from './shared/guards/role-guard';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +24,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { SigninComponent } from './pages/signin/signin.component';
+import { AccountRegistrationComponent } from './pages/account-registration/account-registration.component';
+import { RoleCreateComponent } from './pages/role-create/role-create.component';
 
 
 @NgModule({
@@ -27,7 +34,9 @@ import { SigninComponent } from './pages/signin/signin.component';
     BaseLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
-    SigninComponent
+    SigninComponent,
+    AccountRegistrationComponent,
+    RoleCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -41,11 +50,22 @@ import { SigninComponent } from './pages/signin/signin.component';
     MatButtonModule,
     MatIconModule,
     MatSliderModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatCardModule,
-    
+    MatInputModule,
+    MatStepperModule,
+    MatListModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatSidenavModule
+
+
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    RoleGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

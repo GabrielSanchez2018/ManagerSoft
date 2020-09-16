@@ -1,0 +1,72 @@
+.logo {
+  margin-left: 75px;
+  font-size: 24px;
+  font-weight: lighter;;
+}
+
+.navbar-container {
+  padding: 5px;
+}
+
+.toolbar {
+  background: black;
+}
+
+.navbar-link {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.main-content {
+  padding-left: 30px;
+}
+
+.footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.footer-content {
+  font-size: 16px;
+  font-weight: lighter;
+  padding-left: 100px;
+  letter-spacing: 3px;
+  background: black;
+  color: antiquewhite;
+}
+
+.bu-link {
+  text-decoration: none;
+}
+
+.bu-link:hover {
+  text-decoration: underline;
+}
+
+mat-grid-tile {
+  background: lightblue;
+}
+
+.container-fluid{
+  margin-top: 40%;
+  width: 70%;
+  margin: 0 auto;
+  background-color: white;
+}
+.gopLogo{
+  width: 90%;
+  float: right;
+}
+
+.col-md-8{
+  background-color: none;
+  border: 2px solid white;
+}
+.newForm{
+  width: 100%;
+  max-width: 60%;
+  min-width: 48%;
+  margin: 0 auto;
+
+}
