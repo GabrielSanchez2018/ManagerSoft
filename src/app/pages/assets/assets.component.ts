@@ -21,7 +21,7 @@ export class AssetsComponent implements OnInit {
   form: any;
   concat: any;
   displayedColumns = ['assetNumber',
-  'assetTyp', 'assetModel','functions'];
+  'assetTyp', 'assetModel', 'assetTypes','functions'];
 
 
 
@@ -51,16 +51,18 @@ openCreateAssetDialog() {
 
     console.log('this si the data ', data)
     if (data) {
-      console.log('this is asset number',data)
+      console.log('this is asset number',data.types)
 
       this.http.post('/api/asset/' , {
 
         assetNumber: data.assetNumber,
         assetTyp: data.assetTyp,
-        assetModel: data.assetModel
+        assetModel: data.assetModel,
+        types: data.types
 
 
       }).subscribe(res => {
+        console.log("this is after sucribing", res)
         this.assets = this.assets.concat([res]);
       }, err => {
         console.log(err);

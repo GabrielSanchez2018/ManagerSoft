@@ -48,6 +48,12 @@
   <td mat-footer-cell *matFooterCellDef> </td>
 </ng-container>
 
+<ng-container matColumnDef="assetTypes">
+  <th mat-header-cell *matHeaderCellDef> Type </th>
+  <td mat-cell *matCellDef="let element">
+    {{element.types}}</td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
 
 
 <ng-container matColumnDef="functions">

@@ -18,6 +18,7 @@ let assetsSchema = mongoose.Schema({
     assetNumber: {type: String},
     assetTyp: {type:String},
     assetModel: {type: String},
+    types: {type:String},
     status: {type: Boolean, default: false},
 
 
