@@ -12,6 +12,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
 import { CookieService } from 'ngx-cookie-service';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table'
+import {MatDialogModule} from '@angular/material/dialog';
+
 import { RoleGuard } from './shared/guards/role-guard';
 
 import { AppComponent } from './app.component';
@@ -26,6 +29,11 @@ import {MatIconModule} from '@angular/material/icon';
 import { SigninComponent } from './pages/signin/signin.component';
 import { AccountRegistrationComponent } from './pages/account-registration/account-registration.component';
 import { RoleCreateComponent } from './pages/role-create/role-create.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AssetsComponent } from './pages/assets/assets.component';
+import { AssetCreateComponent } from './dialogs/asset-create/asset-create.component';
+import { ServiceCreateDeleteDialogComponent } from './dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
+import { AssetTypeComponent } from './dialogs/asset-type/asset-type.component';
 
 
 @NgModule({
@@ -36,7 +44,12 @@ import { RoleCreateComponent } from './pages/role-create/role-create.component';
     HomeComponent,
     SigninComponent,
     AccountRegistrationComponent,
-    RoleCreateComponent
+    RoleCreateComponent,
+    AdminComponent,
+    AssetsComponent,
+    AssetCreateComponent,
+    ServiceCreateDeleteDialogComponent,
+    AssetTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +71,9 @@ import { RoleCreateComponent } from './pages/role-create/role-create.component';
     MatOptionModule,
     MatSelectModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTableModule,
+    MatDialogModule
 
 
   ],

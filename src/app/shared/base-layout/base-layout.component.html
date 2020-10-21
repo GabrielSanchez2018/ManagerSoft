@@ -57,7 +57,14 @@
   </mat-toolbar>
 
   <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="over" style="background-color: #92AA83; width: 30%;">
+    <mat-sidenav #sidenav mode="over" style="
+    background: #fc4a1a;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+     width: 20%;
+    ">
       <mat-nav-list>
 
 
@@ -73,18 +80,18 @@
             </span>
             <span style="color: #ffd740;">&nbsp;&nbsp;Services</span>
         </a>
-        <a mat-list-item [routerLink]="'/my-orders'">
+        <a mat-list-item [routerLink]="'/assets'">
           <span class="material-icons">
             shopping_cart
             </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;My Orders</span>
+            <span style="color: #ffd740;">&nbsp;&nbsp;Assets</span>
         </a>
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/purchases-by-service'">
+        <a mat-list-item *ngIf='show' [routerLink]="'/asset-create'">
           <span class="material-icons">
             assignment_turned_in
             </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Submited Orders</span>
+            <span style="color: #ffd740;">&nbsp;&nbsp;Asset create</span>
         </a>
 
         <a mat-list-item *ngIf='show' [routerLink]="'/role-create'">
@@ -94,19 +101,8 @@
             <span style="color: #ffd740;">&nbsp;&nbsp;Role</span>
         </a>
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/leftover-product'">
-          <span class="material-icons">
-            rule_folder
-            </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Left Over Product Check</span>
-          </a>
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/order-verify'">
-          <span class="material-icons">
-            list_alt
-            </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Inventory Check in</span>
-        </a>
+
 
 
 
@@ -119,25 +115,9 @@
             <span style="color: red;">&nbsp;&nbsp;Sell Items</span>
         </a> -->
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/find-employee'">
-          <span class="material-icons">
-            store
-            </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Employee Sale</span>
-        </a>
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/all-orders'">
-          <span class="material-icons" style="size: 20px;">
-            ballot
-            </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;All Orders</span>
-        </a>
-        <a mat-list-item *ngIf='show' [routerLink]="'/database-management'">
-          <span class="material-icons">
-            warning
-            </span>
-            <span style="color: red;">&nbsp;&nbsp;Database Management</span>
-        </a>
+
+
 
         <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
 
