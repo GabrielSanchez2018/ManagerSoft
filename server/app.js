@@ -11,7 +11,8 @@ const mongoose = require('mongoose');
 const UserApi = require('./routes/user-api');
 const SessionApi = require('./routes/session-api');
 const AssetApi = require('./routes/asset-api');
-const AssetTypeApi = require('./routes/asset-type-api')
+const AssetTypeApi = require('./routes/asset-type-api');
+const LocationApi = require('./routes/location-api');
 
 /**
  * App configurations
@@ -51,6 +52,7 @@ app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
 app.use('/api/asset', AssetApi);
 app.use('/api/assettype', AssetTypeApi);
+app.use('/api/location', LocationApi);
 
 /**
  * Create and start server

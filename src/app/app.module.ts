@@ -34,6 +34,8 @@ import { AssetsComponent } from './pages/assets/assets.component';
 import { AssetCreateComponent } from './dialogs/asset-create/asset-create.component';
 import { ServiceCreateDeleteDialogComponent } from './dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
 import { AssetTypeComponent } from './dialogs/asset-type/asset-type.component';
+import { AssetFieldsComponent } from './pages/asset-fields/asset-fields.component';
+import { LocationCreateComponent } from './dialogs/location-create/location-create.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { AssetTypeComponent } from './dialogs/asset-type/asset-type.component';
     AssetsComponent,
     AssetCreateComponent,
     ServiceCreateDeleteDialogComponent,
-    AssetTypeComponent
+    AssetTypeComponent,
+    AssetFieldsComponent,
+    LocationCreateComponent
   ],
   imports: [
     BrowserModule,

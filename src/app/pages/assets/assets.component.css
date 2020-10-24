@@ -27,7 +27,7 @@ table {
 }
 
 .mat-header-cell {
-  background-color: #ea5927;
+  background-color: gray;
 }
 .mat-cell{
   border-right-width: 1px;

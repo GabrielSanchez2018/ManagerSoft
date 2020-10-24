@@ -40,7 +40,8 @@ router.post('/', function(req, res, next) {
     assetNumber: req.body.assetNumber,
     assetTyp: req.body.assetTyp,
     assetModel: req.body.assetModel,
-    types: req.body.types
+    types: req.body.types,
+    location: req.body.location
   };
   Asset.create(r, function(err, Asset) {
     if (err) {

@@ -58,10 +58,7 @@
 
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" style="
-    background: #fc4a1a;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background-color: white; color: black;
 
      width: 20%;
     ">
@@ -72,33 +69,33 @@ background: linear-gradient(to top, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Fir
           <span class="material-icons">
             settings
             </span>
-            <span style="color: #ffd740;"> &nbsp;&nbsp; Admin</span>
+            <span style="color: black;"> &nbsp;&nbsp; Admin</span>
         </a>
-        <a mat-list-item [routerLink]="'/'">
+        <a mat-list-item [routerLink]="'/asset-fields'">
           <span class="material-icons">
             dashboard
             </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Services</span>
+            <span style="color: black;">&nbsp;&nbsp;Asset Fields</span>
         </a>
         <a mat-list-item [routerLink]="'/assets'">
           <span class="material-icons">
             shopping_cart
             </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Assets</span>
+            <span style="color: black;">&nbsp;&nbsp;Assets</span>
         </a>
 
         <a mat-list-item *ngIf='show' [routerLink]="'/asset-create'">
           <span class="material-icons">
             assignment_turned_in
             </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Asset create</span>
+            <span style="color: black;">&nbsp;&nbsp;Asset create</span>
         </a>
 
         <a mat-list-item *ngIf='show' [routerLink]="'/role-create'">
           <span class="material-icons">
             pie_chart
             </span>
-            <span style="color: #ffd740;">&nbsp;&nbsp;Role</span>
+            <span style="color: black;">&nbsp;&nbsp;Role</span>
         </a>
 
 

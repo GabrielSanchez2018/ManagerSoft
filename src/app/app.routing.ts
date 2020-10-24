@@ -12,6 +12,8 @@ import { AssetsComponent } from './pages/assets/assets.component';
 import { AssetCreateComponent } from './dialogs/asset-create/asset-create.component';
 import { AssetTypeComponent } from './dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from './dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
+import { AssetFieldsComponent } from './pages/asset-fields/asset-fields.component';
+import { LocationCreateComponent } from './dialogs/location-create/location-create.component';
 
 export const AppRoutes: Routes = [
   {
@@ -52,8 +54,18 @@ export const AppRoutes: Routes = [
         canActivate: [RoleGuard]
       },
       {
+        path: 'asset-fields',
+        component: AssetFieldsComponent,
+        canActivate: [RoleGuard]
+      },
+      {
         path: 'service-create-delete-dialog',
         component: ServiceCreateDeleteDialogComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'location-create',
+        component: LocationCreateComponent,
         canActivate: [RoleGuard]
       },
 
