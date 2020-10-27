@@ -22,6 +22,7 @@ export class AssetCreateComponent implements OnInit {
   selectedValue: string;
   selectedType: string;
   location: Object;
+  shelf: Object;
 
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
@@ -49,6 +50,16 @@ export class AssetCreateComponent implements OnInit {
       console.log(err);
     });
 
+    /***
+     * Asset Shelf API
+     */
+
+    this.http.get('/api/shelf').subscribe(res => {
+      this.shelf = res;
+      console.log(this.shelf);
+    }, err => {
+      console.log(err);
+    });
   }
 
 
@@ -60,6 +71,7 @@ export class AssetCreateComponent implements OnInit {
       assetModel: [null, Validators.compose([Validators.required])],
       types: [null, Validators.compose([Validators.required])],
       location: [null, Validators.compose([Validators.required])],
+      shelf: [null, Validators.compose([Validators.required])],
 
     });
     console.log('this asset type', this.form)

@@ -14,6 +14,7 @@ import { AssetTypeComponent } from './dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from './dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
 import { AssetFieldsComponent } from './pages/asset-fields/asset-fields.component';
 import { LocationCreateComponent } from './dialogs/location-create/location-create.component';
+import { ShelfCreateDialogComponent } from './dialogs/shelf-create-dialog/shelf-create-dialog.component';
 
 export const AppRoutes: Routes = [
   {
@@ -61,6 +62,11 @@ export const AppRoutes: Routes = [
       {
         path: 'service-create-delete-dialog',
         component: ServiceCreateDeleteDialogComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'shelf-create-dialog',
+        component: ShelfCreateDialogComponent,
         canActivate: [RoleGuard]
       },
       {

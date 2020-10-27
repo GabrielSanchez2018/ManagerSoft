@@ -41,9 +41,11 @@ router.post('/', function(req, res, next) {
     assetTyp: req.body.assetTyp,
     assetModel: req.body.assetModel,
     types: req.body.types,
-    location: req.body.location
+    location: req.body.location,
+    shelf: req.body.shelf
   };
   Asset.create(r, function(err, Asset) {
+    console.log('Here is the asset',Asset)
     if (err) {
       console.log(err);
       return next(err);

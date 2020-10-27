@@ -20,7 +20,9 @@ let assetsSchema = mongoose.Schema({
     status: {type: Boolean, default: false},
     assetModel: {type: String},
     types: {type:String},
-    location: {types: String},
+    location: {type: String},
+    shelf: {type:String},
+    date_created: {type: Date, default: new Date()},
    
 
 

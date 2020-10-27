@@ -18,10 +18,11 @@ export class AssetsComponent implements OnInit {
   assetNumber: any;
   assetTyp: any;
   assetModel: any;
+  locations: any;
   form: any;
   concat: any;
   displayedColumns = ['assetNumber',
-  'assetTyp', 'assetModel', 'assetTypes', 'location','functions'];
+  'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf', 'date','functions'];
 
 
 
@@ -59,7 +60,8 @@ openCreateAssetDialog() {
         assetTyp: data.assetTyp,
         assetModel: data.assetModel,
         types: data.types,
-        location: data.location
+        location: data.location, 
+        shelf: data.shelf
         
 
 
