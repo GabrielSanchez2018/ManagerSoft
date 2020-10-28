@@ -1,1 +1,32 @@
-<p>admin works!</p>
+<br>
+<br>
+<br>
+<mat-card>
+    <a href="https://www.w3schools.com/">Visit W3Schools.com!</a>
+    <button mat-button
+
+    [routerLink]="'/www.google.com'"
+
+
+    >Google</button>
+
+
+    <button onclick="myFunction()">youtube</button>
+
+
+
+
+</mat-card>
+<br>
+<mat-card>
+
+    <iframe name="I1" id="testFrame" width="100%"
+    height="500px" style="visibility:visible" frameBorder="0"
+    src="https://www.google.com/webhp?igu=1"></iframe>
+</mat-card>
+
+<script>
+  function myFunction() {
+    document.getElementById("testFrame").src = "http://www.cnn.com";
+    }
+</script>

@@ -60,7 +60,7 @@ openCreateAssetDialog() {
         assetModel: data.assetModel,
         types: data.types,
         location: data.location
-        
+
 
 
       }).subscribe(res => {
@@ -73,31 +73,6 @@ openCreateAssetDialog() {
   });
 }
 
-openCreateAssetTypeDialog() {
-  const dialogRef = this.dialog.open(AssetTypeComponent, {
-    disableClose: true
-  });
-
-  dialogRef.afterClosed().subscribe(data => {
-
-    console.log('this si the data ', data)
-    if (data) {
-      console.log('this is asset number',data)
-
-      this.http.post('/api/assettype/' , {
-
-        text: data.text,
-
-
-
-      }).subscribe(res => {
-
-      }, err => {
-        console.log(err);
-      });
-    }
-  });
-}
 
 delete(AssetId) {
   const dialogRef = this.dialog.open(ServiceCreateDeleteDialogComponent, {
