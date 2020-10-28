@@ -14,8 +14,9 @@ import { CookieService } from 'ngx-cookie-service';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table'
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { MatTabsModule } from '@angular/material';
 import { RoleGuard } from './shared/guards/role-guard';
+import { MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +37,8 @@ import { ServiceCreateDeleteDialogComponent } from './dialogs/service-create-del
 import { AssetTypeComponent } from './dialogs/asset-type/asset-type.component';
 import { AssetFieldsComponent } from './pages/asset-fields/asset-fields.component';
 import { LocationCreateComponent } from './dialogs/location-create/location-create.component';
+import { ShelfCreateDialogComponent } from './dialogs/shelf-create-dialog/shelf-create-dialog.component';
+import { BinCreateDialogComponent } from './dialogs/bin-create-dialog/bin-create-dialog.component';
 
 
 @NgModule({
@@ -53,7 +56,9 @@ import { LocationCreateComponent } from './dialogs/location-create/location-crea
     ServiceCreateDeleteDialogComponent,
     AssetTypeComponent,
     AssetFieldsComponent,
-    LocationCreateComponent
+    LocationCreateComponent,
+    ShelfCreateDialogComponent,
+    BinCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +82,10 @@ import { LocationCreateComponent } from './dialogs/location-create/location-crea
     MatMenuModule,
     MatSidenavModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule,
+    MatPaginatorModule
+
 
 
   ],

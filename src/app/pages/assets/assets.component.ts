@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild, ViewChildren} from '@angular/core';
 //import {InvoiceSummaryDialogComponent} from '../../dialogs/invoice-summary-dialog/invoice-summary-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -6,6 +6,8 @@ import {HttpClient} from '@angular/common/http';
 import { AssetCreateComponent } from '../../dialogs/asset-create/asset-create.component';
 import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
+import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
+
 
 
 @Component({
@@ -14,14 +16,26 @@ import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-crea
   styleUrls: ['./assets.component.css']
 })
 export class AssetsComponent implements OnInit {
+
+  dataSource: MatTableDataSource<AssetCreateComponent>;
+
+  @ViewChildren(MatPaginator) paginator: MatPaginator;
+  //  @ViewChild(MatPaginator, {static: false}) Component
+
+
+
   assets: any;
   assetNumber: any;
   assetTyp: any;
   assetModel: any;
+  locations: any;
   form: any;
   concat: any;
   displayedColumns = ['assetNumber',
-  'assetTyp', 'assetModel', 'assetTypes', 'location','functions'];
+  'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date','functions'];
+  sort: any;
+
+
 
 
 
@@ -29,15 +43,37 @@ export class AssetsComponent implements OnInit {
 
 
     this.http.get('/api/asset').subscribe(res => {
+
       this.assets = res;
+
+
+
       console.log(this.assets);
     }, err => {
       console.log(err);
     });
+
+    this.dataSource = this.assets;
+
+
   }
 
-ngOnInit(){
 
+  ngAfterViewInit() {
+    // console.log('this is paginator',this.assets.paginator)
+    // this.assets.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+  }
+
+
+
+ngOnInit(){
+  this.dataSource = new MatTableDataSource(this.assets);
+  console.log('this is paginator',this.dataSource)
+
+  // Assign the paginator *after* dataSource is set
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
 }
 
 //Create new asset
@@ -59,7 +95,9 @@ openCreateAssetDialog() {
         assetTyp: data.assetTyp,
         assetModel: data.assetModel,
         types: data.types,
-        location: data.location
+        location: data.location,
+        shelf: data.shelf,
+        bin: data.bin
 
 
 

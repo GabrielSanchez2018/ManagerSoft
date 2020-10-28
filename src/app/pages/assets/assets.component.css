@@ -6,8 +6,9 @@
 }
 
 .mat-raised-button{
-  background-color:lightblue;
+  background-color:#104c91;
   width: auto;
+  color: white;
 }
 
 table {
@@ -27,7 +28,8 @@ table {
 }
 
 .mat-header-cell {
-  background-color: gray;
+  background-color: #104c91;
+  color:white;
 }
 .mat-cell{
   border-right-width: 1px;

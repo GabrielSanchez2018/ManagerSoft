@@ -3,6 +3,7 @@ import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.compon
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 import { LocationCreateComponent } from 'src/app/dialogs/location-create/location-create.component';
+import { ShelfCreateDialogComponent } from 'src/app/dialogs/shelf-create-dialog/shelf-create-dialog.component';
 
 @Component({
   selector: 'app-asset-fields',
@@ -21,7 +22,7 @@ export class AssetFieldsComponent implements OnInit {
       console.log(err);
     });
   }
-   
+
 
   ngOnInit() {
   }
@@ -33,21 +34,21 @@ export class AssetFieldsComponent implements OnInit {
     const dialogRef = this.dialog.open(AssetTypeComponent, {
       disableClose: true
     });
-  
+
     dialogRef.afterClosed().subscribe(data => {
-  
+
       console.log('this si the data ', data)
       if (data) {
         console.log('this is asset number',data)
-  
+
         this.http.post('/api/assettype/' , {
-  
+
           text: data.text,
-  
-  
-  
+
+
+
         }).subscribe(res => {
-  
+
         }, err => {
           console.log(err);
         });
@@ -59,21 +60,73 @@ export class AssetFieldsComponent implements OnInit {
     const dialogRef = this.dialog.open(LocationCreateComponent, {
       disableClose: true
     });
-  
+
     dialogRef.afterClosed().subscribe(data => {
-  
+
       console.log('this si the data ', data)
       if (data) {
         console.log('this is asset number',data)
-  
+
         this.http.post('/api/location/' , {
-  
+
           text: data.text,
-  
-  
-  
+
+
+
         }).subscribe(res => {
-  
+
+        }, err => {
+          console.log(err);
+        });
+      }
+    });
+  }
+
+  openCreateAssetShelfDialog(){
+    const dialogRef = this.dialog.open(ShelfCreateDialogComponent, {
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+
+      console.log('this si the data ', data)
+      if (data) {
+        console.log('this is asset number',data)
+
+        this.http.post('/api/shelf/' , {
+
+          text: data.text,
+
+
+
+        }).subscribe(res => {
+
+        }, err => {
+          console.log(err);
+        });
+      }
+    });
+  }
+
+  openCreateAssetBinDialog(){
+    const dialogRef = this.dialog.open(ShelfCreateDialogComponent, {
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+
+      console.log('this si the data ', data)
+      if (data) {
+        console.log('this is asset number',data)
+
+        this.http.post('/api/bin/' , {
+
+          text: data.text,
+
+
+
+        }).subscribe(res => {
+
         }, err => {
           console.log(err);
         });
