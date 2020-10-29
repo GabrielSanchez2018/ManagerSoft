@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild, ViewChildren} from '@angular/core';
+import { Component, OnInit ,ViewChild, ViewChildren, AfterViewInit} from '@angular/core';
 //import {InvoiceSummaryDialogComponent} from '../../dialogs/invoice-summary-dialog/invoice-summary-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -6,8 +6,22 @@ import {HttpClient} from '@angular/common/http';
 import { AssetCreateComponent } from '../../dialogs/asset-create/asset-create.component';
 import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
-import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import { DataSource } from '@angular/cdk/table';
 
+export interface UserData {
+  arrayNumber: String
+  assetNumber: String
+  assetTyp: String, 
+  assetModel: String
+  assetTypes: String 
+  location: String 
+  shelf: String
+  bin: String 
+  date: String
+}
 
 
 @Component({
@@ -15,14 +29,17 @@ import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
   templateUrl: './assets.component.html',
   styleUrls: ['./assets.component.css']
 })
-export class AssetsComponent implements OnInit {
+export class AssetsComponent implements AfterViewInit  {
 
-  dataSource: MatTableDataSource<AssetCreateComponent>;
+  dataSource: MatTableDataSource<any>;
 
-  @ViewChildren(MatPaginator) paginator: MatPaginator;
-  //  @ViewChild(MatPaginator, {static: false}) Component
+  
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  
 
   assets: any;
   assetNumber: any;
@@ -31,9 +48,9 @@ export class AssetsComponent implements OnInit {
   locations: any;
   form: any;
   concat: any;
-  displayedColumns = ['assetNumber',
+  displayedColumns = ['arrayNumber','assetNumber',
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date','functions'];
-  sort: any;
+
 
 
 
@@ -43,37 +60,22 @@ export class AssetsComponent implements OnInit {
 
 
     this.http.get('/api/asset').subscribe(res => {
-
       this.assets = res;
-
-
-
       console.log(this.assets);
     }, err => {
       console.log(err);
     });
 
-    this.dataSource = this.assets;
+    this.dataSource = new MatTableDataSource(this.assets);
 
 
   }
 
-
-  ngAfterViewInit() {
-    // console.log('this is paginator',this.assets.paginator)
-    // this.assets.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
-
-
+  
 
 ngOnInit(){
-  this.dataSource = new MatTableDataSource(this.assets);
-  console.log('this is paginator',this.dataSource)
-
-  // Assign the paginator *after* dataSource is set
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
+  // this.dataSource = new MatTableDataSource(this.assets);
+  // setTimeout(() => this.dataSource.paginator = this.paginator);
 }
 
 //Create new asset
@@ -87,7 +89,7 @@ openCreateAssetDialog() {
 
     console.log('this si the data ', data)
     if (data) {
-      console.log('this is asset number',data.location)
+      console.log('this is asset number', this.assets.length)
 
       this.http.post('/api/asset/' , {
 
@@ -97,7 +99,8 @@ openCreateAssetDialog() {
         types: data.types,
         location: data.location,
         shelf: data.shelf,
-        bin: data.bin
+        bin: data.bin,
+        arrayNumber: this.assets.length + 1
 
 
 

@@ -30,8 +30,10 @@ table {
 .mat-header-cell {
   background-color: #104c91;
   color:white;
+  border-right-width: 1px;
+  border-right-color: lightgray;
 }
-.mat-cell{
+.mat-cell, .mat-header-cell{
   border-right-width: 1px;
   border-right-style:double;
   border-right-color: lightgray;

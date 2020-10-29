@@ -43,7 +43,8 @@ router.post('/', function(req, res, next) {
     types: req.body.types,
     location: req.body.location,
     shelf: req.body.shelf,
-    bin: req.body.bin
+    bin: req.body.bin,
+    arrayNumber: req.body.arrayNumber
   };
   Asset.create(r, function(err, Asset) {
     console.log('Here is the asset',Asset)
