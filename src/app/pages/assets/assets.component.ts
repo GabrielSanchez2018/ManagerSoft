@@ -7,6 +7,7 @@ import { AssetCreateComponent } from '../../dialogs/asset-create/asset-create.co
 import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
 import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 
 
@@ -16,10 +17,9 @@ import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
   styleUrls: ['./assets.component.css']
 })
 export class AssetsComponent implements OnInit {
+  dataSource: any;
+  @ViewChild(DatatableComponent, {static: false}) table: DatatableComponent;
 
-  dataSource: MatTableDataSource<AssetCreateComponent>;
-
-  @ViewChildren(MatPaginator) paginator: MatPaginator;
   //  @ViewChild(MatPaginator, {static: false}) Component
 
 
@@ -33,49 +33,57 @@ export class AssetsComponent implements OnInit {
   concat: any;
   displayedColumns = ['assetNumber',
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date','functions'];
-  sort: any;
+
 
 
 
 
 
   constructor(private http: HttpClient, private dialog: MatDialog) {
-
-
     this.http.get('/api/asset').subscribe(res => {
-
       this.assets = res;
-
-
-
-      console.log(this.assets);
     }, err => {
       console.log(err);
     });
 
-    this.dataSource = this.assets;
 
 
   }
 
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  ngAfterViewInit() {
-    // console.log('this is paginator',this.assets.paginator)
-    // this.assets.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
+
+
 
 
 
 ngOnInit(){
-  this.dataSource = new MatTableDataSource(this.assets);
-  console.log('this is paginator',this.dataSource)
+  this.http.get('/api/asset').subscribe(res => {
 
-  // Assign the paginator *after* dataSource is set
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
+  this.assets = res;
+
+  this.assets = new MatTableDataSource(this.assets);
+
+  this.assets.paginator = this.paginator;
+  this.assets.sort = this.sort;
+
+    console.log(this.assets);
+  }, err => {
+    console.log(err);
+  });
+
+
+
 }
 
+applyFilter(filterValue: string) {
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
+  }
+}
 //Create new asset
 
 openCreateAssetDialog() {
