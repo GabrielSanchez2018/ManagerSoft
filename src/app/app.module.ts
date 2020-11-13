@@ -17,6 +17,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material';
 import { RoleGuard } from './shared/guards/role-guard';
 import { MatPaginatorModule } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +41,11 @@ import { AssetFieldsComponent } from './pages/asset-fields/asset-fields.componen
 import { LocationCreateComponent } from './dialogs/location-create/location-create.component';
 import { ShelfCreateDialogComponent } from './dialogs/shelf-create-dialog/shelf-create-dialog.component';
 import { BinCreateDialogComponent } from './dialogs/bin-create-dialog/bin-create-dialog.component';
+import { AssetFindComponent } from './pages/asset-find/asset-find.component';
+import { AssetCheckoutComponent } from './dialogs/asset-checkout/asset-checkout.component';
+import { ItemsComponent } from './pages/items/items.component';
+import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-create-dialog.component';
+import { SellComponent } from './pages/sell/sell.component';
 
 
 @NgModule({
@@ -58,7 +65,12 @@ import { BinCreateDialogComponent } from './dialogs/bin-create-dialog/bin-create
     AssetFieldsComponent,
     LocationCreateComponent,
     ShelfCreateDialogComponent,
-    BinCreateDialogComponent
+    BinCreateDialogComponent,
+    AssetFindComponent,
+    AssetCheckoutComponent,
+    ItemsComponent,
+    ItemCreateDialogComponent,
+    SellComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +96,9 @@ import { BinCreateDialogComponent } from './dialogs/bin-create-dialog/bin-create
     MatTableModule,
     MatDialogModule,
     MatTabsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatFileUploadModule
 
 
 

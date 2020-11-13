@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, NgModel } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+//import { UploadService } from  '../upload.service';
+
+
 
 
 
@@ -26,7 +30,13 @@ export class AssetCreateComponent implements OnInit {
   bin: Object;
 
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
+
+
+  @ViewChild("fileInput", {static: false}) fileInput: ElementRef;
+  files  = [];
+
+
+  constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
     interface types {
       value: string;
       viewValue: string;
@@ -86,9 +96,10 @@ export class AssetCreateComponent implements OnInit {
       location: [null, Validators.compose([Validators.required])],
       shelf: [null, Validators.compose([Validators.required])],
       bin: [null, Validators.compose([Validators.required])],
+      image: [null, Validators.compose([Validators.required])],
 
     });
-    console.log('this asset type', this.form)
+    console.log('this asset type', this.form.image)
     console.log('selected', this.selectedValue)
   }
 
@@ -99,6 +110,20 @@ export class AssetCreateComponent implements OnInit {
   close(){
     this.dialogRef.close();
   }
+
+//   onClick() {
+//     const fileInput = this.fileInput.nativeElement;
+//     fileInput .onchange = () => {
+//         for (let index = 0; index < fileInput .files.length; index++)
+//         {
+//              const file = fileInput .files[index];
+//              this.files.push({ data: file, inProgress: false, progress: 0});
+//         }
+//           this.upload();
+//     };
+//     fileInput.click();
+// }
+
 
 
 }

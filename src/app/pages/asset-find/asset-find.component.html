@@ -1,0 +1,47 @@
+<body>
+
+
+
+<br><br><br><br>
+
+
+<div fxLayout="column">
+
+  <mat-card fxFlex class="signin-container mat-elevation-z8">
+    <mat-card-title class="signin-title mat-headline">Check Out</mat-card-title>
+    <mat-card-subtitle class="signin-subtitle mat-headline">Scan your asset
+    </mat-card-subtitle>
+    <mat-card-content>
+
+        <form [formGroup]="form" (ngSubmit)="login(); form.reset()" #loginForm="ngForm">
+
+          <mat-card-content>
+
+
+            <mat-form-field appearance="outline" >
+              <mat-label>Asset Number</mat-label>
+              <input style="border: 1px bold;" matInput [formControl]="form.controls ['assetNumber']" placeholder="Asset No" autofocus/>
+
+              <mat-icon matSuffix>find_in_page</mat-icon>
+              <!-- <mat-error *ngIf="form.controls['assetNumber'].hasError('required') && form.controls['assetNumber'].touched">
+                Employee ID is a required field.
+              </mat-error>
+              <mat-error *ngIf="form.controls['assetNumber'].hasError('pattern') && form.controls['assetNumber'].touched">
+                Employee ID must be capital letters.
+              </mat-error> -->
+            </mat-form-field>
+
+          </mat-card-content>
+
+          <mat-card-actions class="submitButton">
+            <button type="submit" fxFlex mat-raised-button  color="primary">Submit</button>
+            <!-- <button type="submit" fxFlex mat-raised-button [disabled]="!form.valid" color="primary">Submit</button> -->
+          </mat-card-actions>
+        </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+</body>

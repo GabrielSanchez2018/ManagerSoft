@@ -15,6 +15,9 @@ const AssetTypeApi = require('./routes/asset-type-api');
 const LocationApi = require('./routes/location-api');
 const ShelfApi = require('./routes/shelf-api');
 const BinApi = require('./routes/bin-api');
+const ItemApi = require('./routes/item-api');
+const CustomerApi = require('./routes/customer-api');
+
 
 /**
  * App configurations
@@ -57,6 +60,8 @@ app.use('/api/assettype', AssetTypeApi);
 app.use('/api/location', LocationApi);
 app.use('/api/shelf', ShelfApi);
 app.use('/api/bin', BinApi);
+app.use('/api/items', ItemApi);
+app.use('/api/customer', CustomerApi);
 /**
  * Create and start server
  */
