@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 
 // role schema
-let itemSchema = mongoose.Schema({
+let buttonSchema = mongoose.Schema({
     itemCode: {type: Number},
     itemDescription: {type:String},
     itemPrice: {type: String, default: false},
@@ -25,4 +25,4 @@ let itemSchema = mongoose.Schema({
 });
 
 // export for public use
-module.exports = mongoose.model('Items', itemSchema);
+module.exports = mongoose.model('Button', buttonSchema);

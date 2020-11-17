@@ -1,0 +1,19 @@
+.clientText{
+  color: black;
+  font-weight: lighter;
+  background-color: lightyellow;
+  text-align: right;
+}
+.priceText{
+  color: black;
+  font-weight: lighter;
+  text-align: center;
+}
+.divPrincepal{
+  width: 50%;
+  margin: 0 auto;
+}
+.example-form{
+  text-align: center;
+  margin: 0 auto;
+}

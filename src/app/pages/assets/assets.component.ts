@@ -125,6 +125,7 @@ openCreateAssetDialog() {
       }).subscribe(res => {
         console.log("this is after sucribing", res)
         this.assets = this.assets.concat([res]);
+
       }, err => {
         console.log(err);
       });

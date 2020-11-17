@@ -67,8 +67,8 @@ router.get('/', function(req, res, next) {
 });
 
 //Find by ID
-router.get('/:ItemNumber', function(req, res, next) {
-  Item.findOne({'ItemNumber': req.params.ItemNumber}, function(err, Items) {
+router.get('/:ItemCode', function(req, res, next) {
+  Item.findOne({'itemCode': req.params.ItemCode}, function(err, Items) {
     if (err) {
       console.log(err);
       return next(err);

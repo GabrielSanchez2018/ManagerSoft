@@ -1,21 +1,28 @@
 /*=========================
 Name: Gabriel Sanchez
 Date: April 20, 2020
-Description: items
+Description: Cart
 ==========================*/
 
 const mongoose = require('mongoose');
 //const assetTypeSchema = require('../models/asset-type')
 
 
-
+// let lineItemSchema = mongoose.Schema({
+//   itemCode: {type: Number},
+//     itemDescription: {type:String},
+//     itemPrice: {type: Number},
+//     itemType: {type: String},
+// });
 
 
 // role schema
-let itemSchema = mongoose.Schema({
+let cartSchema = mongoose.Schema({
+    customer: {type: Number, default: 0},
+    // lineItems: [lineItemSchema],
     itemCode: {type: Number},
     itemDescription: {type:String},
-    itemPrice: {type: String, default: false},
+    itemPrice: {type: Number},
     itemType: {type: String},
     date_created: {type: Date, default: new Date()},
     //img:{ data: Buffer, contentType: String}
@@ -25,4 +32,4 @@ let itemSchema = mongoose.Schema({
 });
 
 // export for public use
-module.exports = mongoose.model('Items', itemSchema);
+module.exports = mongoose.model('Cart', cartSchema);

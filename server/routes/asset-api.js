@@ -100,7 +100,7 @@ router.post('/', function(req, res, next) {
     shelf: req.body.shelf,
     bin: req.body.bin,
     img : {
-      data: req.body.image.toString('base64'),
+      data: req.body.image,
       contentType: 'image/png'
   }
   };

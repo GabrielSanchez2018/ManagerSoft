@@ -11,13 +11,18 @@ let assetTypeSchema = mongoose.Schema({
   text: {type: String},
 });//
 
+let lineItemSchema = mongoose.Schema({
+  itemCode: {type: Number},
+    itemDescription: {type:String},
+    itemPrice: {type: Number},
+    itemType: {type: String},
+});
 
 
 // role schema
 let customerSchema = mongoose.Schema({
-    cutumerNumber: {type: String},
-    itemCode: {type:String},
-    itemDescription: {type: String},
+    customerNumber: {type: Number},
+    lineItems: [lineItemSchema],
     date_created: {type: Date, default: new Date()}
 });
 

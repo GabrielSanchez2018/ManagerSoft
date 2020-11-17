@@ -21,6 +21,7 @@ import { AssetCheckoutComponent } from './dialogs/asset-checkout/asset-checkout.
 import { ItemsComponent } from './pages/items/items.component';
 import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-create-dialog.component';
 import { SellComponent } from './pages/sell/sell.component';
+import { PaydialogComponent } from './dialogs/paydialog/paydialog.component';
 
 export const AppRoutes: Routes = [
   {
@@ -109,6 +110,11 @@ export const AppRoutes: Routes = [
       {
         path: 'sell',
         component: SellComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'paydialog',
+        component: PaydialogComponent,
         canActivate: [RoleGuard]
       },
 
