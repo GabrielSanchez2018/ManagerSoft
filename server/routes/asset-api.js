@@ -8,6 +8,61 @@ const express = require('express');
 const Asset = require('../models/assets');
 const router = express.Router();
 
+// require('dotenv/config');
+// var fs = require('fs');
+// /***
+//  * Upload images
+//  */
+// var multer = require('multer');
+// const { decodeBase64 } = require('bcryptjs');
+
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
+
+// var upload = multer({ storage: storage });
+
+// Image get
+
+// router.get('/', (req, res) => {
+//   Asset.find({}, (err, items) => {
+//       if (err) {
+//           console.log(err);
+//       }
+//       else {
+//           // res.render('app', { items: items });
+//       }
+//   });
+// });
+
+// // Uploading the image
+// router.post('/', upload.single('image'), (req, res, next) => {
+
+//   var img = {
+//           data: req.body.filename,
+//           contentType: 'image/png'
+//       }
+
+//   Asset.create(img, (err, item) => {
+//       if (err) {
+//           console.log(err);
+//       }
+//       else {
+//           // item.save();
+//           console.log(item)
+
+//       }
+//   });
+// });
+
+
+
+
 //Find all Assets
 router.get('/', function(req, res, next) {
   Asset.find({}, function(err, Assets) {
@@ -22,8 +77,8 @@ router.get('/', function(req, res, next) {
 });
 
 //Find by ID
-router.get('/:AssetId', function(req, res, next) {
-  Assets.findOne({'_id': req.params.AssetId}, function(err, Assets) {
+router.get('/:assetNumber', function(req, res, next) {
+  Asset.findOne({'assetNumber': req.params.assetNumber}, function(err, Assets) {
     if (err) {
       console.log(err);
       return next(err);
@@ -44,7 +99,10 @@ router.post('/', function(req, res, next) {
     location: req.body.location,
     shelf: req.body.shelf,
     bin: req.body.bin,
-    arrayNumber: req.body.arrayNumber
+    img : {
+      data: req.body.image.toString('base64'),
+      contentType: 'image/png'
+  }
   };
   Asset.create(r, function(err, Asset) {
     console.log('Here is the asset',Asset)
@@ -54,6 +112,7 @@ router.post('/', function(req, res, next) {
     } else {
       console.log(Asset);
       res.json(Asset);
+
     }
   });
 });

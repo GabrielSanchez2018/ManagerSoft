@@ -7,6 +7,7 @@ import { AssetCreateComponent } from '../../dialogs/asset-create/asset-create.co
 import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
 import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -19,7 +20,9 @@ import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
 export class AssetsComponent implements OnInit {
   dataSource: any;
 
-   
+
+
+   @ViewChild(MatPaginator, {static: false}) Component
 
   
  
@@ -33,24 +36,33 @@ export class AssetsComponent implements OnInit {
   locations: any;
   form: any;
   concat: any;
-  displayedColumns = ['arrayNumber','assetNumber',
+  displayedColumns = ['img','assetNumber',
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date','functions'];
+  inspectionDetails: any;
+  img: any;
 
 
 
 
 
 
-  constructor(private http: HttpClient, private dialog: MatDialog) {
+  constructor(private http: HttpClient, private dialog: MatDialog, private domSanitizer: DomSanitizer) {
     this.http.get('/api/asset').subscribe(res => {
       this.assets = res;
+      console.log(this.assets)
+
+      // var img = this.assets.img
+      // img = 'data:image/png;base64,' + this.inspectionDetails.reportImage;
     }, err => {
       console.log(err);
     });
 
 
 
+
   }
+
+
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -61,19 +73,20 @@ export class AssetsComponent implements OnInit {
   
 
 ngOnInit(){
-  this.http.get('/api/asset').subscribe(res => {
+  // this.http.get('/api/asset').subscribe(res => {
 
-  this.assets = res;
+  // this.assets = res;
 
-  this.assets = new MatTableDataSource(this.assets);
+  // this.assets = new MatTableDataSource(this.assets);
 
-  this.assets.paginator = this.paginator;
-  this.assets.sort = this.sort;
+  // this.assets.paginator = this.paginator;
+  // this.assets.sort = this.sort;
+  // this.assets = this.concat([this.paginator]);
 
-    console.log(this.assets);
-  }, err => {
-    console.log(err);
-  });
+  //   console.log(this.assets);
+  // }, err => {
+  //   console.log(err);
+  // });
 
 
 
@@ -97,7 +110,7 @@ openCreateAssetDialog() {
 
     console.log('this si the data ', data)
     if (data) {
-      console.log('this is asset number', this.assets.length)
+      console.log('this is asset number',data.image)
 
       this.http.post('/api/asset/' , {
 
@@ -108,7 +121,7 @@ openCreateAssetDialog() {
         location: data.location,
         shelf: data.shelf,
         bin: data.bin,
-        arrayNumber: this.assets.length + 1
+        image: data.image
 
 
 

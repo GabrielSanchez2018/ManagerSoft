@@ -1,0 +1,39 @@
+.mat-card{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2%;
+
+}
+
+.mat-raised-button{
+  background-color:#104c91;
+  width: auto;
+  color: white;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-card-content {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+.ng-container, th, td, .mat-header-cell {
+  text-align: center;
+  font-size: 15px;
+  color: black;
+
+}
+
+.mat-header-cell {
+  background-color: #104c91;
+  color:white;
+}
+.mat-cell{
+  border-right-width: 1px;
+  border-right-style:double;
+  border-right-color: lightgray;
+
+}

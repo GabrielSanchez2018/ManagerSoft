@@ -16,6 +16,11 @@ import { AssetFieldsComponent } from './pages/asset-fields/asset-fields.componen
 import { LocationCreateComponent } from './dialogs/location-create/location-create.component';
 import { ShelfCreateDialogComponent } from './dialogs/shelf-create-dialog/shelf-create-dialog.component';
 import { BinCreateDialogComponent } from './dialogs/bin-create-dialog/bin-create-dialog.component';
+import { AssetFindComponent } from './pages/asset-find/asset-find.component';
+import { AssetCheckoutComponent } from './dialogs/asset-checkout/asset-checkout.component';
+import { ItemsComponent } from './pages/items/items.component';
+import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-create-dialog.component';
+import { SellComponent } from './pages/sell/sell.component';
 
 export const AppRoutes: Routes = [
   {
@@ -78,6 +83,32 @@ export const AppRoutes: Routes = [
       {
         path: 'location-create',
         component: LocationCreateComponent,
+        canActivate: [RoleGuard]
+      },
+
+      {
+        path: 'asset-find',
+        component: AssetFindComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'asset-checkout',
+        component: AssetCheckoutComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'items',
+        component: ItemsComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'item-create-dialog',
+        component: ItemCreateDialogComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'sell',
+        component: SellComponent,
         canActivate: [RoleGuard]
       },
 

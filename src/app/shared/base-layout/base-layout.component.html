@@ -84,18 +84,25 @@
             <span style="color: black;">&nbsp;&nbsp;Assets</span>
         </a>
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/asset-create'">
+        <a mat-list-item *ngIf='show' [routerLink]="'/items'">
           <span class="material-icons">
             assignment_turned_in
             </span>
-            <span style="color: black;">&nbsp;&nbsp;Asset create</span>
+            <span style="color: black;">&nbsp;&nbsp;Items</span>
         </a>
 
-        <a mat-list-item *ngIf='show' [routerLink]="'/role-create'">
+        <a mat-list-item *ngIf='show' [routerLink]="'/sell'">
+          <span class="material-icons">
+            assignment_turned_in
+            </span>
+            <span style="color: black;">&nbsp;&nbsp;Sell</span>
+        </a>
+
+        <a mat-list-item *ngIf='show' [routerLink]="'/asset-find'">
           <span class="material-icons">
             pie_chart
             </span>
-            <span style="color: black;">&nbsp;&nbsp;Role</span>
+            <span style="color: black;">&nbsp;&nbsp;Find</span>
         </a>
 
 

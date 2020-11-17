@@ -59,15 +59,32 @@
   </mat-form-field>
 
   &nbsp;
-  <mat-form-field >
-    <mat-label>Status</mat-label>
-    <mat-select [formControl]="form.controls['Status']" name="status">
-      <mat-option *ngFor="let status of statuses" [value]="status.text">
-        {{status.text}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
+  <label for="image">Upload Image</label>
+  <input [formControl]="form.controls['image']" type="file" id="image"
+         name="image" value="image" required>
+  <!-- <mat-form-field>
+    <label for="singleFile">Upload file</label>
+    <input id="singleFile" [formControl]="form.controls['']" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
+    <br>
+
+    <mat-file-upload-queue #fileUploadQueue
+        [fileAlias]="'file'"
+        [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
+
+
+        <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+    </mat-file-upload-queue>
+  </mat-form-field> -->
+
+
+  <!-- <button mat-button color="warn" (click)="onClick()">
+    <mat-icon>file_upload</mat-icon>
+    Upload
+</button> -->
+
+
+  <!-- <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload> -->
 
 
   <mat-dialog-actions align="end">
