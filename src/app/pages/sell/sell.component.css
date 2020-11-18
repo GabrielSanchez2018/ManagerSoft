@@ -1,5 +1,13 @@
 .insert{
-  width: 50%;
-  margin: 0 auto;
+  width: 20%;
   margin-top: 1%;
+}
+
+.cart-card{
+  width: 100%;
+  margin: 0 auto;
+}
+.mat-table{
+  width: 100%;
+  margin: 0 auto;
 }

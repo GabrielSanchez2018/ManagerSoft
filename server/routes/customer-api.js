@@ -90,9 +90,8 @@ router.get('/', function(req, res, next){
 
 router.post('/', function(req, res, next) {
   let customer = {
-    custumerNumber: req.body.custumerNumber,
-    itemCode: req.body.itemCode,
-    itemDescription: req.body.itemDescription,
+    customerNumber: req.body.customerNumber,
+    lineItems: req.body.lineItems,
 
   };
   Customer.create(customer, function(err, Customer) {

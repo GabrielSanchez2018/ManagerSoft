@@ -1,9 +1,13 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef,  ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
+import { PaydialogComponent } from 'src/app/dialogs/paydialog/paydialog.component';
+
+import { MatTable } from '@angular/material';
 
 @Component({
   selector: 'app-sell',
@@ -11,17 +15,58 @@ import { MatDialog, MatSnackBar } from '@angular/material';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
+
+
+
+  displayedColumns = ['itemDescription', 'itemType','itemPrice', 'functions'];
   form: any;
   items: any;
   itemScan: any;
   AssetNumber: any;
   itemCode: any;
   scannedItem: any;
-  ItemNumber: any[];
+  item: any;
+  cart: any;
+  //lineItems: any;
+  dataSource: any;
+  btnArray: Object;
+  btnArrayTest: Object;
 
+row:any;
 
+table: MatTable<any>;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private changeDetectorRefs: ChangeDetectorRef, private dialog: MatDialog, private snackBar: MatSnackBar) {
+
+// Remove the deleted row from the data table. 
+// Need to remove from the downloaded data first.
+
+
+
+
+
+    this.http.get('/api/asset').subscribe(res => {
+      this.btnArray = res;
+      console.log(this.btnArray)
+
+      // var img = this.assets.img
+      // img = 'data:image/png;base64,' + this.inspectionDetails.reportImage;
+    }, err => {
+      console.log(err);
+    });
+
+
+    this.http.get('/api/manualitems').subscribe(res => {
+      this.btnArrayTest = res;
+      console.log(this.btnArrayTest)
+
+      // var img = this.assets.img
+      // img = 'data:image/png;base64,' + this.inspectionDetails.reportImage;
+    }, err => {
+      console.log(err);
+    });
+
+
 
       this.http.get('/api/items').subscribe(res => {
         this.items = res;
@@ -33,6 +78,37 @@ export class SellComponent implements OnInit {
         console.log(err);
       });
 
+      this.http.get('/api/cart').subscribe(res => {
+        this.cart = res;
+         console.log(this.cart)
+
+
+
+      }, err => {
+        console.log(err);
+      });
+
+/***
+ * This function gives the day number of the year.
+ */
+
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    let diff = Math.abs( now.valueOf() - start.valueOf());
+    var oneday = 1000 * 60 * 60* 24;
+
+    var timerightnow = Math.floor(  oneday / diff);
+
+    var diffe = Math.abs( start.valueOf()- now.valueOf());
+    var lastdate = Math.floor(diffe / (1000 * 3600 * 24));
+
+    console.log('this is the time now', lastdate)
+
+/**
+ * Funtion Ends ------
+ */
+
+
 
   }
 
@@ -40,140 +116,193 @@ export class SellComponent implements OnInit {
     this.form = this.fb.group({
       itemScan: [null, Validators.compose([Validators.required])]
     });
+
   }
 
   create(){
     /**
      * Passing the Items IPI to the create funtion.
-     * I am setting the scannedItem cookie
      */
     console.log(this.form.controls.itemScan.value)
-    var ItemNumber = this.form.controls.itemScan.value
-    this.http.get('/api/items/' + ItemNumber).subscribe(res => {
+    var scannedItem = this.form.controls.itemScan.value
+    this.http.get('/api/items').subscribe(res => {
       if(res){
         console.log('this is res', res)
-        this.cookieService.set('Item', ItemNumber, 1, '/', '', false, "Strict");
-        console.log('this is the res after the cookie', res)
-        console.log("this is the cookie", ItemNumber)
-        if(Array.isArray(res)){
-          this.ItemNumber = res.filter(q => q.ItemNumber === this.scannedItem);;
-        }
-        console.log('filter', this.ItemNumber)
+        this.cookieService.set('Item', scannedItem, 1, '/', '', false, "Strict");
       }
-      
     }, err => {
       console.log(err);
     });
 
 
 
-    // this.http.get('/api/items/').subscribe(res => {
-    //   console.log(res)
-      
-    //   console.log('this asset in page checkout', this.ItemNumber)
-      
-    // }, err => {
-    //   console.log(err);
-    // });
+    this.http.get('/api/items/' + scannedItem).subscribe(res => {
+      if(res){
+         this.item = res
+      console.log(this.item)
+      } else {
+
+        this.snackBar.open(
+          "Producto No Indentificado, lo puedes anadir.",
+          "ERROR",
+
+          {
+            duration: 4000,
+            verticalPosition: "top"
+          }
 
 
-     // console.log('this asset in page checkout',this.itemScan )
-     // this.items = res;
-      //  console.log(this.items)
-      //  const iTems = this.items
-      // console.log(iTems)
+        );
+        throw new Error("Something went badly wrong!");
+      }
+      console.log(this.item.itemCode)
 
 
+//creating an array to store the objects
+  //   let savedArray = []
 
 
+  // let lineItem = {
+  //   itemCode:this.item.itemCode,
+  //   itemDescription:  this.item.itemDescription,
+  //   itemPrice: this.item.itemPrice,
+  //   itemType: this.item.itemType
+  // };
+  // savedArray.push(lineItem)
+  // this.form.reset();
 
-      // function getCode(){
-      //   if(scan == iTems[0].itemCode){
-      //     return iTems[0].itemCode
-      //   } else if(scan == iTems[1].itemCode){
-      //     return iTems[1].itemCode
-      //   }else if(scan == iTems[2].itemCode){
-      //     return iTems[2].itemCode
-      //   } else if(scan == iTems[3].itemCode){
-      //     return iTems[3].itemCode
-      //   } else if(scan == iTems[4].itemCode){
-      //     return iTems[4].itemCode
-      //   } else if(scan == iTems[5].itemCode){
-      //     return iTems[5].itemCode
-      //   } else if(scan == iTems[6].itemCode){
-      //     return iTems[6].itemCode
-      //   } else if(scan == iTems[7].itemCode){
-      //     return iTems[7].itemCode
-      //   } else if(scan == iTems[8].itemCode){
-      //     return iTems[8].itemCode
-      //   } else if(scan == iTems[9].itemCode){
-      //     return iTems[9].itemCode
-      //   } else if(scan == iTems[10].itemCode){
-      //     return iTems[10].itemCode
-      //   } else if(scan == iTems[11].itemCode){
-      //     return iTems[11].itemCode
-      //   } else if(scan == iTems[12].itemCode){
-      //     return iTems[12].itemCode
-      //   } else if(scan == iTems[13].itemCode){
-      //     return iTems[13].itemCode
-      //   } else if(scan == iTems[14].itemCode){
-      //     return iTems[14].itemCode
-      //   } else if(scan == iTems[15].itemCode){
-      //     return iTems[15].itemCode
-      //   } else if(scan == iTems[16].itemCode){
-      //     return iTems[16].itemCode
-      //   } else if(scan == iTems[17].itemCode){
-      //     return iTems[17].itemCode
-      //   } else if(scan == iTems[18].itemCode){
-      //     return iTems[18].itemCode
-      //   } else if(scan == iTems[19].itemCode){
-      //     return iTems[19].itemCode
-      //   } else if(scan == iTems[20].itemCode){
-      //     return iTems[20].itemCode
-      //   } else if(scan == iTems[21].itemCode){
-      //     return iTems[21].itemCode
-      //   } else if(scan == iTems[22].itemCode){
-      //     return iTems[22].itemCode
-      //   } else if(scan == iTems[23].itemCode){
-      //     return iTems[23].itemCode
-      //   } else if(scan == iTems[24].itemCode){
-      //     return iTems[24].itemCode
-      //   }
-
-      // }
-
-
-      //var totalpriceResult = getCode();
-     // console.log(totalpriceResult)
+  // console.warn('added', {lineItem})
 
 
 
 
 
 
+      // console.log('this is the saved array', savedArray)
 
 
+
+     var lineItems = [{
+      itemCode:this.item.itemCode,
+      itemDescription:  this.item.itemDescription,
+      itemPrice: this.item.itemPrice,
+      itemType: this.item.itemType
+     }];
+
+
+     console.log('saved before pushing ', lineItems)
+
+
+      this.http.post('/api/cart/',{
+        lineItems: lineItems,
+        itemCode: this.item.itemCode,
+        itemDescription: this.item.itemDescription,
+        itemPrice: this.item.itemPrice,
+        itemType: this.item.itemType,
+      }).subscribe(res =>{
+        this.cart = this.cart.concat([res]);
+        console.log('this is concat',this.cart)
+        this.form.reset();
+        this.dataSource.renderRows();
+      })
+      this.dataSource.deleted
+      this.cookieService.delete('Item')
+    }, err => {
+      console.log(err);
+    });
 
 
 
   }
-  // create() {
-  //   function getDescription(){
-  //   if(this.itmeCode == this.items[0]?.itemCode){
-  //   return this.items[0]?.itemDescription
 
-  //   }else if(this.itmeCode == this.items[1]?.itemCode){
-  //     return this.items[1]?.itemDescription
+  getTotalCost() {
+    return this.cart.map(t => t.itemPrice).reduce((acc, value) => acc + value, 0);
+  }
 
-  //   }else if(this.itmeCode == this.items[2]?.itemCode){
-  //     return this.items[2]?.itemDescription
 
-  // }else if(this.itmeCode == this.items[3]?.itemCode){
-  //   return this.items[3]?.itemDescription
+  openPayDialog() {
 
-  //   }
-  // }
-  // console.log(getDescription())
-  // }
+
+    const dialogRef = this.dialog.open(PaydialogComponent, {
+      disableClose: true
+    });
+
+
+    dialogRef.afterClosed().subscribe(
+      
+
+    );
+      console.log( 'concat afeter delete', this.cart.concat([this.dataSource]))
+
+      
+     
+    
+  }
+
+
+  delete(CartId) {
+    const dialogRef = this.dialog.open(ServiceCreateDeleteDialogComponent, {
+      data: {
+        CartId
+      },
+      disableClose: true,
+      width: '800px'
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      if (result === 'confirm'){
+        this.http.delete('/api/cart/' + CartId).subscribe(res => {
+          console.log('Cart item deleted');
+          if(Array.isArray(this.cart)){
+            this.cart = this.cart.filter(q => q._id !== CartId);
+
+          }
+
+          console.log(this.cart);
+        });
+      }
+    });
+  }
+
+  
+  background: any
+  changePageBg(data){
+    this.background = data.assetNumber
+    this.http.post('/api/cart/',{
+
+      itemCode: data.itemCode,
+      itemDescription: data.itemDescription,
+      itemPrice: data.itemPrice,
+      itemType: data.itemType,
+    }).subscribe(res =>{
+      this.cart = this.cart.concat([res]);
+      console.log('this is concat',this.cart)
+      this.form.reset();
+      this.dataSource.renderRows();
+    })
+    this.dataSource.deleted
+    this.cookieService.delete('Item')
+  }
+
+
+
+  changePage(data){
+    this.background = data.assetNumber
+    this.http.post('/api/cart/',{
+
+      itemCode: data.itemCode,
+      itemDescription: data.itemDescription,
+      itemPrice: data.itemPrice,
+      itemType: data.itemType,
+    }).subscribe(res =>{
+      this.cart = this.cart.concat([res]);
+      console.log('this is concat',this.cart)
+      this.form.reset();
+      this.dataSource.renderRows();
+    })
+    this.dataSource.deleted
+    this.cookieService.delete('Item')
+  }
+  
 
 }

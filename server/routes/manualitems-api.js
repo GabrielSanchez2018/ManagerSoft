@@ -1,11 +1,11 @@
 /*=========================
 Name: Gabriel Sanchez
 Date: April 20, 2020
-Description: all API's used for Items
+Description: all API's used for Manual ManualItems
 ==========================*/
 
 const express = require('express');
-const Item = require('../models/item');
+const ManualItem = require('../models/manualitems');
 const router = express.Router();
 
 require('dotenv/config');
@@ -53,33 +53,33 @@ var fs = require('fs');
 
 
 
-//Find all Items
+//Find all ManualItems
 router.get('/', function(req, res, next) {
-  Item.find({}, function(err, Items) {
+  ManualItem.find({}, function(err, ManualItems) {
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(Items);
-      res.json(Items);
+      console.log(ManualItems);
+      res.json(ManualItems);
     }
   })
 });
 
 //Find by ID
-router.get('/:ItemCode', function(req, res, next) {
-  Item.findOne({'itemCode': req.params.ItemCode}, function(err, Items) {
+router.get('/:ManualItemCode', function(req, res, next) {
+  ManualItem.findOne({'ManualItemCode': req.params.ManualItemCode}, function(err, ManualItems) {
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(Items);
-      res.json(Items);
+      console.log(ManualItems);
+      res.json(ManualItems);
     }
   })
 });
 
-//Create Item
+//Create ManualItem
 router.post('/', function(req, res, next) {
   let i = {
     itemCode: req.body.itemCode,
@@ -87,53 +87,53 @@ router.post('/', function(req, res, next) {
     itemPrice: req.body.itemPrice,
     itemType: req.body.itemType
   };
-  Item.create(i, function(err, Item) {
-    console.log('Here is the Item',Item)
+  ManualItem.create(i, function(err, ManualItem) {
+    console.log('Here is the ManualItem',ManualItem)
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(Item);
-      res.json(Item);
+      console.log(ManualItem);
+      res.json(ManualItem);
 
     }
   });
 });
 
-//Update Item
-router.put('/:ItemId', function(req, res, next) {
-  Items.findOne({'_id': req.params.ItemId}, function(err, Item) {
+//Update ManualItem
+router.put('/:ManualItemId', function(req, res, next) {
+  ManualItem.findOne({'_id': req.params.ManualItemId}, function(err, ManualItem) {
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(Item);
-      Item.set({
+      console.log(ManualItem);
+      ManualItem.set({
         text: req.body.text
       });
 
-      Item.save(function(err, Item) {
+      ManualItem.save(function(err, ManualItem) {
         if (err) {
           console.log(err);
           return next(err);
         } else {
-          console.log(Item);
-          res.json(Item);
+          console.log(ManualItem);
+          res.json(ManualItem);
         }
       });
     }
   });
 });
 
-// Delete Item
-router.delete('/:ItemId', function(req, res, next) {
-  Item.findOneAndDelete({'_id': req.params.ItemId}, function(err, Item) {
+// Delete ManualItem
+router.delete('/:ManualItemId', function(req, res, next) {
+  ManualItem.findOneAndDelete({'_id': req.params.ManualItemId}, function(err, ManualItem) {
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(Item);
-      res.json(Item);
+      console.log(ManualItem);
+      res.json(ManualItem);
     }
   });
 });

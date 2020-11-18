@@ -46,6 +46,8 @@ import { AssetCheckoutComponent } from './dialogs/asset-checkout/asset-checkout.
 import { ItemsComponent } from './pages/items/items.component';
 import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-create-dialog.component';
 import { SellComponent } from './pages/sell/sell.component';
+import { PaydialogComponent } from './dialogs/paydialog/paydialog.component';
+import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-dialog/manual-item-create-dialog.component';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import { SellComponent } from './pages/sell/sell.component';
     AssetCheckoutComponent,
     ItemsComponent,
     ItemCreateDialogComponent,
-    SellComponent
+    SellComponent,
+    PaydialogComponent,
+    ManualItemCreateDialogComponent
   ],
   imports: [
     BrowserModule,

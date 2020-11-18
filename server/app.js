@@ -17,6 +17,8 @@ const ShelfApi = require('./routes/shelf-api');
 const BinApi = require('./routes/bin-api');
 const ItemApi = require('./routes/item-api');
 const CustomerApi = require('./routes/customer-api');
+const CartApi = require('./routes/cart-api');
+const ManualItems = require('./routes/manualitems-api');
 
 
 /**
@@ -35,7 +37,10 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
 const port = 3000; // server port
 
 // TODO: This line will need to be replaced with your actual database connection string
-const conn = 'mongodb+srv://admin:admin@cluster0.djivq.gcp.mongodb.net/brcs?retryWrites=true&w=majority';
+const conn = 'mongodb+srv://Gabriel:Jairo500!@cluster0.djivq.gcp.mongodb.net/brcs?retryWrites=true&w=majority'
+// const conn = "mongodb://localhost:27017/bcrs"
+
+//'mongodb+srv://admin:admin@cluster0.djivq.gcp.mongodb.net/brcs?retryWrites=true&w=majority';
 
 /**
  * Database connection
@@ -43,7 +48,8 @@ const conn = 'mongodb+srv://admin:admin@cluster0.djivq.gcp.mongodb.net/brcs?retr
 mongoose.connect(conn, {
   promiseLibrary: require('bluebird'),
   useUnifiedTopology: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+
 }).then(() => {
   console.debug(`Connection to the database instance was successful`);
 }).catch(err => {
@@ -62,6 +68,8 @@ app.use('/api/shelf', ShelfApi);
 app.use('/api/bin', BinApi);
 app.use('/api/items', ItemApi);
 app.use('/api/customer', CustomerApi);
+app.use('/api/cart', CartApi);
+app.use('/api/manualitems', ManualItems);
 /**
  * Create and start server
  */
