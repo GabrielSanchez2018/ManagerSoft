@@ -101,13 +101,13 @@
 
 
 
-      <mat-tab-group mat-align-tabs="center" style="background-color: lightgoldenrodyellow;">
+      <mat-tab-group mat-align-tabs="center" style="background-color:  #1f8ac0; color: #EFc9af;">
         <mat-tab label="Productos">
 
 
 <!--
 <button mat-raised-button (click)="createPan()" color="warn">Pan</button> -->
-<mat-card style="width: 100%; margin: 0 auto; background-color: lightskyblue;">
+<mat-card style="width: 100%; margin: 0 auto; background-color: gainsboro">
 
   <div *ngFor="let button of items" style=" display:inline; white-space:nowrap; " [ngStyle]="{'background-color': background}">
     <button mat-raised-button style="margin: 10px 10px 10px 10px;" (click)="changePageBg(button)" >
@@ -119,16 +119,21 @@
 </mat-card>
 
           </mat-tab>
-          <mat-tab label="Productos Manuales">
+          <mat-tab label="Productos Manuales" style="background-color: gainsboro;">
+            <mat-card style="width: 100%; margin: 0 auto; background-color: gainsboro">
+
             <div *ngFor="let button of btnArrayTest" style=" display:inline; white-space:nowrap; " [ngStyle]="{'background-color': background}">
               <button mat-raised-button style="margin: 10px 10px 10px 10px;" (click)="changePage(button)" >
-              <span style="margin-top: 10px;"> {{ button.itemDescription }}</span>
+              <span style="margin-top: 10px; width: 20px;"> {{ button.itemDescription }}</span>
 
             </button>
             </div>
+          </mat-card>
           </mat-tab>
 
         </mat-tab-group>
-		</div>
-	</div>
+    </div>
+  
+  </div>
+
 </div>
