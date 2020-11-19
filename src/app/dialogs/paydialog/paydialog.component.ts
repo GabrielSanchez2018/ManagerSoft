@@ -17,7 +17,7 @@ export class PaydialogComponent implements OnInit{
   i: Number;
   customer: any;
   map: any;
-  
+
   table: any;
   dataSource: MatTableDataSource<any>;
 
@@ -94,6 +94,8 @@ create(){
      })
      this.http.delete('/api/cart/').subscribe(res =>{
       console.log('Cart deleted', res);
+      this.cart = [];
+
     })
     this.dialogRef.close(this.form.value);
     this.changeDetectorRefs.detectChanges();
@@ -106,6 +108,7 @@ create(){
     console.log(err);
   });
 }
+
 
 
 

@@ -19,6 +19,8 @@ import { RoleGuard } from './shared/guards/role-guard';
 import { MatPaginatorModule } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatFileUploadModule } from 'angular-material-fileupload';
+import { ChartModule } from 'primeng/chart';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -48,7 +50,6 @@ import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-cre
 import { SellComponent } from './pages/sell/sell.component';
 import { PaydialogComponent } from './dialogs/paydialog/paydialog.component';
 import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-dialog/manual-item-create-dialog.component';
-
 
 @NgModule({
   declarations: [
@@ -102,7 +103,13 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
     MatTabsModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatFileUploadModule
+    MatFileUploadModule,
+    ChartModule
+
+
+
+
+
 
 
 

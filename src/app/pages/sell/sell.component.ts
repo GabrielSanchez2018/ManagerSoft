@@ -38,7 +38,7 @@ table: MatTable<any>;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private changeDetectorRefs: ChangeDetectorRef, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
-// Remove the deleted row from the data table. 
+// Remove the deleted row from the data table.
 // Need to remove from the downloaded data first.
 
 
@@ -229,14 +229,15 @@ table: MatTable<any>;
 
 
     dialogRef.afterClosed().subscribe(
-      
+
 
     );
       console.log( 'concat afeter delete', this.cart.concat([this.dataSource]))
+      this.dataSource.cart = []
 
-      
-     
-    
+
+
+
   }
 
 
@@ -264,7 +265,7 @@ table: MatTable<any>;
     });
   }
 
-  
+
   background: any
   changePageBg(data){
     this.background = data.assetNumber
@@ -276,6 +277,7 @@ table: MatTable<any>;
       itemType: data.itemType,
     }).subscribe(res =>{
       this.cart = this.cart.concat([res]);
+      this.displayedColumns;
       console.log('this is concat',this.cart)
       this.form.reset();
       this.dataSource.renderRows();
@@ -303,6 +305,6 @@ table: MatTable<any>;
     this.dataSource.deleted
     this.cookieService.delete('Item')
   }
-  
+
 
 }

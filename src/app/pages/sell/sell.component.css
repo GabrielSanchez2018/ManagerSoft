@@ -6,8 +6,29 @@
 .cart-card{
   width: 100%;
   margin: 0 auto;
+  overflow: auto;
 }
 .mat-table{
   width: 100%;
+  height: auto;
   margin: 0 auto;
+}
+.mat-column-select {
+  overflow: initial;
+}
+
+
+.example-container {
+  height: auto;
+  max-height: 400px;
+  overflow: auto;
+}
+
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.mat-table-sticky {
+  border-top: 1px solid #e0e0e0;
 }

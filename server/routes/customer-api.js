@@ -24,6 +24,33 @@ router.get('/', function(req, res, next){
   })
 })
 
+router.get('/purchases-graph', function(req, res, next) {
+  Customer.aggregate([
+    {"$unwind": "$lineItems"},
+    {
+      "$group": {
+        "_id": {
+          "title": "$lineItems.itemDescription",
+          "price": "$lineItems.itemPrice",
+          "code": "$lineItems.itemCode",
+
+        },
+        "totalprice": {"$sum": "$lineItems.itemPrice" },
+        "count": {"$sum": 1},
+      }
+    }, {"$sort": {"_id.title": 1}},
+  ], function(err, purchaseGraph) {
+      if(err) {
+        console.log(err);
+        return next(err);
+      } else {
+        console.log("--PurchaseGraph data structure--");
+        console.log(purchaseGraph);
+        res.json(purchaseGraph);
+      }
+  });
+});
+
 // Find Barcode Report
 // router.get('/barcodes-graph', function(req, res, next) {
 //   Barcodes.aggregate([
