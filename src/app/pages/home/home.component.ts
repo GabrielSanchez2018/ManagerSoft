@@ -17,7 +17,9 @@ export class HomeComponent implements OnInit {
   labels = [];
   data: any;
   displayedColumns = ['description','price','count', 'total'];
+  displayedColumns01 = ['date','description','price','count', 'total'];
   code: any;
+  bydate: Object;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private changeDetectorRefs: ChangeDetectorRef, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -77,6 +79,14 @@ export class HomeComponent implements OnInit {
 }, err => {
     console.log(err);
 });
+
+this.http.get('/api/customer/recordbydate').subscribe(res => {
+  this.bydate = res;
+  console.log(this.customergraph)
+}, err => {
+  console.log(err);
+});
+
 }
 
 

@@ -57,6 +57,12 @@ mongoose.connect(conn, {
   console.log(`MongoDB Error: ${err.message}`)
 }); // end mongoose connection
 
+/***
+ *   Set EJS as templating engine  
+ */
+app.set("view engine", "ejs"); 
+
+
 /**
  * API(s)
  */

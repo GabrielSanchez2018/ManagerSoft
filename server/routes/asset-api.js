@@ -8,7 +8,6 @@ const express = require('express');
 const Asset = require('../models/assets');
 const router = express.Router();
 
-
 var fs = require('fs'); 
 var path = require('path'); 
 require('dotenv/config'); 

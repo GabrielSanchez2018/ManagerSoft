@@ -51,6 +51,34 @@ router.get('/purchases-graph', function(req, res, next) {
   });
 });
 
+router.get('/recordbydate', function(req, res, next) {
+  Customer.aggregate([
+    {"$unwind": "$lineItems"},
+    {
+      "$group": {
+        "_id": {
+          "bydate": "$lineItems.date_created",
+          "title": "$lineItems.itemDescription",
+          "price": "$lineItems.itemPrice",
+          "code": "$lineItems.itemCode",
+
+        },
+        "totalprice": {"$sum": "$lineItems.itemPrice" },
+        "count": {"$sum": 1},
+      }
+    }, {"$sort": {"_id.title": 1}},
+  ], function(err, purchaseGraph) {
+      if(err) {
+        console.log(err);
+        return next(err);
+      } else {
+        console.log("--PurchaseGraph data structure--");
+        console.log(purchaseGraph);
+        res.json(purchaseGraph);
+      }
+  });
+});
+
 // Find Barcode Report
 // router.get('/barcodes-graph', function(req, res, next) {
 //   Barcodes.aggregate([

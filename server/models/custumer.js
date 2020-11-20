@@ -16,6 +16,7 @@ let lineItemSchema = mongoose.Schema({
     itemDescription: {type:String},
     itemPrice: {type: Number},
     itemType: {type: String},
+    date_created: {type: Date, default: new Date()}
 });
 
 

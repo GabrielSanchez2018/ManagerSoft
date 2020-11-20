@@ -19,7 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AssetsComponent implements OnInit {
   dataSource: any;
-  public imagePath: string;
+
 
 
    @ViewChild(MatPaginator, {static: false}) Component
@@ -40,7 +40,6 @@ export class AssetsComponent implements OnInit {
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date','functions'];
   inspectionDetails: any;
   img: any;
-  listItems: Object;
 
 
 
@@ -49,8 +48,8 @@ export class AssetsComponent implements OnInit {
 
   constructor(private http: HttpClient, private dialog: MatDialog, private domSanitizer: DomSanitizer) {
     this.http.get('/api/asset').subscribe(res => {
-      this.listItems = res;
-      console.log(this.listItems)
+      this.assets = res;
+      console.log(this.assets)
 
       // var img = this.assets.img
       // img = 'data:image/png;base64,' + this.inspectionDetails.reportImage;
@@ -163,10 +162,4 @@ delete(AssetId) {
 }
 
 
-
-}
-
-export class assets {
-  
-  // ....
 }
