@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild, ViewChildren, AfterViewInit} from '@angular/core';
+import { Component, OnInit ,ViewChild, ViewChildren, AfterViewInit, Pipe} from '@angular/core';
 //import {InvoiceSummaryDialogComponent} from '../../dialogs/invoice-summary-dialog/invoice-summary-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -24,10 +24,10 @@ export class AssetsComponent implements OnInit {
 
    @ViewChild(MatPaginator, {static: false}) Component
 
-  
- 
 
-  
+
+
+
 
   assets: any;
   assetNumber: any;
@@ -41,6 +41,8 @@ export class AssetsComponent implements OnInit {
   inspectionDetails: any;
   img: any;
   listItems: Object;
+  items: any;
+  ImgUrl: any;
 
 
 
@@ -49,8 +51,9 @@ export class AssetsComponent implements OnInit {
 
   constructor(private http: HttpClient, private dialog: MatDialog, private domSanitizer: DomSanitizer) {
     this.http.get('/api/asset').subscribe(res => {
-      this.listItems = res;
-      console.log(this.listItems)
+      this.items = res;
+      //this.ImgUrl = this.items.img.data.data;
+      console.log(this.items[0].img.data.data)
 
       // var img = this.assets.img
       // img = 'data:image/png;base64,' + this.inspectionDetails.reportImage;
@@ -64,14 +67,17 @@ export class AssetsComponent implements OnInit {
   }
 
 
-
+  @Pipe({name: 'safeHtml'})
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
 
+  transform(html) {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(html);
+
+  }
 
 
-  
 
 ngOnInit(){
   // this.http.get('/api/asset').subscribe(res => {
@@ -166,7 +172,3 @@ delete(AssetId) {
 
 }
 
-export class assets {
-  
-  // ....
-}
