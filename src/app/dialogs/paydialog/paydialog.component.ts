@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {MatTable} from '@angular/material';
 import { MatTableDataSource } from '@angular/material/table';
+import { id } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-paydialog',
@@ -80,7 +81,9 @@ getChange(){
 return Math.abs(total)
 }
 
-create(){
+create(_id){
+
+  //Posting Cart Data
   this.http.get('/api/cart').subscribe(res => {
     this.cart = res;
 
@@ -92,17 +95,20 @@ create(){
      }).subscribe(res =>{
        console.log('copy and paste',res)
      })
+
+     //Deleting cart data
      this.http.delete('/api/cart/').subscribe(res =>{
       console.log('Cart deleted', res);
-      this.cart = [];
+      this.cart.connect().next(res);
 
     })
+    
+//Closing the mondal and updating the table
+
     this.dialogRef.close(this.form.value);
-    this.changeDetectorRefs.detectChanges();
-    console.log('this is the change', this.changeDetectorRefs.detectChanges())
-
+    this.cart = this.cart.filter(q => q._id);
     this.dataSource.connect().next(this.cart);
-
+    console.log(this.cart);
 
   }, err => {
     console.log(err);
