@@ -107,10 +107,10 @@
 
 <!--
 <button mat-raised-button (click)="createPan()" color="warn">Pan</button> -->
-<mat-card style="width: 100%; margin: 0 auto; background-color: gainsboro">
+<mat-card style="width: 100%; margin: 0 auto; background-color: lightskyblue">
 
   <div *ngFor="let button of items" style=" display:inline; white-space:nowrap; " [ngStyle]="{'background-color': background}">
-    <button mat-raised-button style="margin: 10px 10px 10px 10px;" (click)="changePageBg(button)" >
+    <button mat-raised-button class="sellbutton" (click)="changePageBg(button)" >
     <span style="margin-top: 10px;"> {{ button.itemDescription }}</span>
 
   </button>

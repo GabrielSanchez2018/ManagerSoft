@@ -62,6 +62,22 @@ tr.mat-footer-row {
   background-color: lightblue;
 }
 
-.mat-row:nth-child(2n+1){
+/* .mat-row:nth-child(2n+1){
   background-color: #e4f0ec;
+} */
+
+.sellbutton{
+  margin: 10px 10px 10px 10px;
+  width: auto; 
+  height: 100px; 
+  text-rendering: auto; 
+  text-align: center;
+
+}
+
+.sellbutton:hover{
+  background-color:  #1f8ac0; /* Green */
+  color: white;
+  font-size: 20px;
+  font-weight: lighter;
 }
