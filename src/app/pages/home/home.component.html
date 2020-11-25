@@ -7,14 +7,68 @@
   </h1>
   <br>
 
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Productos">
+      <br>
+      <table class="totaltable" mat-table [dataSource]="customergraph">
 
-  <table class="totaltable" mat-table [dataSource]="customergraph">
+        <!-- <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code</th>
+        <td mat-cell *matCellDef="let element">{{element._id.code}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total</td>
+        </ng-container> -->
 
-    <!-- <ng-container matColumnDef="code">
-    <th mat-header-cell *matHeaderCellDef> Code</th>
-    <td mat-cell *matCellDef="let element">{{element._id.code}} </td>
+        <ng-container matColumnDef="description" >
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element">{{element._id.title}}  </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price" >
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;">{{element._id.price | currency}}  </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef> Item Count </th>
+        <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.count}}  </td>
+        <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef> Precio Total </th>
+          <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.totalprice | currency}}  </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+          </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+
+
+      </table>
+
+
+
+
+
+
+
+
+</mat-tab>
+<mat-tab label="By Date">
+
+  <table class="totaltable" mat-table [dataSource]="bydates">
+
+    <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date</th>
+    <td mat-cell *matCellDef="let element">{{todayDate() | date}} </td>
     <td mat-footer-cell *matFooterCellDef> Total</td>
-    </ng-container> -->
+    </ng-container>
 
     <ng-container matColumnDef="description" >
       <th mat-header-cell *matHeaderCellDef> Description </th>
@@ -42,9 +96,9 @@
 
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns01"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns01;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns01"></tr>
 
 
 
@@ -53,7 +107,79 @@
 
 
 
-</div>
+
+
+
+</mat-tab>
+<mat-tab label="Generate a Report">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <br>
+        <div  style='margin: 50px; width: 30%; margin: 0 auto;'>
+          <mat-card class="mat-elevation-z8">
+            <mat-card-title>Start Date</mat-card-title>
+
+            <form [formGroup]="form" (ngSubmit)="create()" #roleForm>
+              <mat-card-content>
+                <div fxLayout="column" fxLayoutGap="10px">
+                  <!-- <mat-form-field>
+                    <input matInput
+                           [formControl]="form.controls['description']"
+                           placeholder="Role"/>
+                  </mat-form-field> -->
+                  <br>
+                  <mat-form-field class="example-full-width" appearance="fill">
+
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="start" formControlName="start">
+                    <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                    <mat-datepicker [dateClass]="dateClass" #start></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width" appearance="fill">
+
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="end" formControlName="end">
+                    <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                    <mat-datepicker [dateClass]="dateClass" #end></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+
+              </mat-card-content>
+
+
+              <br/>
+              <mat-card-actions align="end">
+                <button mat-raised-button (click)="cancel()" color="warn">Cancel</button>
+                <button mat-raised-button color="accent">Submit</button>
+              </mat-card-actions>
+            </form>
+          </mat-card>
+
+
+
+        </div>
+
+
+      </div>
+      <div class="col-md-6">
+<br>
+
+      </div>
+    </div>
+  </div>
+
+
+</mat-tab>
+</mat-tab-group>
+
+
+
+
+
 
 
     <!-- <mat-card class="chart">

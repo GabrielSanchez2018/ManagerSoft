@@ -88,25 +88,6 @@ table: MatTable<any>;
         console.log(err);
       });
 
-/***
- * This function gives the day number of the year.
- */
-
-    var now = new Date();
-    var start = new Date(now.getFullYear(), 0, 0);
-    let diff = Math.abs( now.valueOf() - start.valueOf());
-    var oneday = 1000 * 60 * 60* 24;
-
-    var timerightnow = Math.floor(  oneday / diff);
-
-    var diffe = Math.abs( start.valueOf()- now.valueOf());
-    var lastdate = Math.floor(diffe / (1000 * 3600 * 24));
-
-    console.log('this is the time now', lastdate)
-
-/**
- * Funtion Ends ------
- */
 
 
 
@@ -180,13 +161,35 @@ table: MatTable<any>;
 
       // console.log('this is the saved array', savedArray)
 
+      /***
+ * This function gives the day number of the year.
+ */
+
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    let diff = Math.abs( now.valueOf() - start.valueOf());
+    var oneday = 1000 * 60 * 60* 24;
+
+    var timerightnow = Math.floor(  oneday / diff);
+
+    var diffe = Math.abs( start.valueOf()- now.valueOf());
+    var numberoftheyear = Math.floor(diffe / (1000 * 3600 * 24));
+
+    console.log('this is the time now', numberoftheyear)
+
+/**
+ * Funtion Ends ------
+ */
+
+
 
 
      var lineItems = [{
       itemCode:this.item.itemCode,
       itemDescription:  this.item.itemDescription,
       itemPrice: this.item.itemPrice,
-      itemType: this.item.itemType
+      itemType: this.item.itemType,
+      dateNumber: numberoftheyear
      }];
 
 
@@ -199,6 +202,7 @@ table: MatTable<any>;
         itemDescription: this.item.itemDescription,
         itemPrice: this.item.itemPrice,
         itemType: this.item.itemType,
+        dateNumber: numberoftheyear
       }).subscribe(res =>{
         this.cart = this.cart.concat([res]);
         console.log('this is concat',this.cart)

@@ -6,7 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatFormFieldModule, MatFormField, } from '@angular/material/form-field';
-import { MatInputModule, MatOptionModule, MatSelectModule, MatMenuModule} from '@angular/material';
+import { MatInputModule, MatOptionModule, MatSelectModule, MatMenuModule, MatNativeDateModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
@@ -20,6 +20,8 @@ import { MatPaginatorModule } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { ChartModule } from 'primeng/chart';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 
 import { AppComponent } from './app.component';
@@ -104,7 +106,10 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
     MatPaginatorModule,
     MatSnackBarModule,
     MatFileUploadModule,
-    ChartModule
+    ChartModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
 
 
 

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,11 @@ export class HomeComponent implements OnInit {
   labels = [];
   data: any;
   displayedColumns = ['description','price','count', 'total'];
+  displayedColumns01 = ['date','description','price','count', 'total'];
   code: any;
+  bydate: any;
+  form: FormGroup;
+  bydates: any[];
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private changeDetectorRefs: ChangeDetectorRef, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -77,10 +82,65 @@ export class HomeComponent implements OnInit {
 }, err => {
     console.log(err);
 });
+
+this.http.get('/api/customeraggregate/recordbydate').subscribe(res => {
+  this.bydate = res;
+  //Array
+  // const test = this.bydate
+  // console.log(test)
+  // test.forEach(element => console.log('this is the element',element._id.bydate), element ),{
+
+  // };
+
+      /***
+ * This function gives the day number of the year.
+ */
+
+var now = new Date();
+var start = new Date(now.getFullYear(), 0, 0);
+let diff = Math.abs( now.valueOf() - start.valueOf());
+var oneday = 1000 * 60 * 60* 24;
+
+var timerightnow = Math.floor(  oneday / diff);
+
+var diffe = Math.abs( start.valueOf()- now.valueOf());
+var numberoftheyear = Math.floor(diffe / (1000 * 3600 * 24));
+
+console.log('this is the time now', numberoftheyear)
+
+/**
+* Funtion Ends ------
+*/
+
+
+
+  if(Array.isArray(this.bydate)){
+    this.bydates = this.bydate.filter(element => element._id.date === numberoftheyear );
+    console.log('ss',this.bydates)
+
+  }
+
+}, err => {
+  console.log(err);
+});
+
+}
+
+todayDate(){
+  var today = new Date();
+ return today
 }
 
 
   ngOnInit() {
+    this.form = this.fb.group({
+      description: [null, Validators.compose([Validators.required])],
+
+      start:  new FormControl('', Validators.required),
+      end:  new FormControl('', Validators.required)
+
+    });
+    console.log(this.form)
   }
 
 }

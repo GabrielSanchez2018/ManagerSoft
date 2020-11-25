@@ -7,15 +7,15 @@ Description: Custumer
 const mongoose = require('mongoose');
 //const assetTypeSchema = require('../models/asset-type')
 
-let assetTypeSchema = mongoose.Schema({
-  text: {type: String},
-});//
+
 
 let lineItemSchema = mongoose.Schema({
   itemCode: {type: Number},
     itemDescription: {type:String},
     itemPrice: {type: Number},
     itemType: {type: String},
+    date_created: {type: Date, default: new Date()},
+    dateNumber: {type: Number}
 });
 
 
@@ -23,7 +23,8 @@ let lineItemSchema = mongoose.Schema({
 let customerSchema = mongoose.Schema({
     customerNumber: {type: Number},
     lineItems: [lineItemSchema],
-    date_created: {type: Date, default: new Date()}
+    date_created: {type: Date, default: new Date()},
+    dateNumber: {type: Number}
 });
 
 // export for public use

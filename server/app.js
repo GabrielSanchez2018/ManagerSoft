@@ -18,6 +18,7 @@ const ShelfApi = require('./routes/shelf-api');
 const BinApi = require('./routes/bin-api');
 const ItemApi = require('./routes/item-api');
 const CustomerApi = require('./routes/customer-api');
+const CustomerAggregateApi = require('./aggregate/customer-aggregate-api')
 const CartApi = require('./routes/cart-api');
 const ManualItems = require('./routes/manualitems-api');
 
@@ -57,6 +58,12 @@ mongoose.connect(conn, {
   console.log(`MongoDB Error: ${err.message}`)
 }); // end mongoose connection
 
+/***
+ *   Set EJS as templating engine
+ */
+app.set("view engine", "ejs");
+
+
 /**
  * API(s)
  */
@@ -71,6 +78,7 @@ app.use('/api/items', ItemApi);
 app.use('/api/customer', CustomerApi);
 app.use('/api/cart', CartApi);
 app.use('/api/manualitems', ManualItems);
+app.use('/api/customeraggregate',CustomerAggregateApi);
 /**
  * Create and start server
  */
