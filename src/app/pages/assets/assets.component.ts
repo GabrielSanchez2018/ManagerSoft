@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild, ViewChildren, AfterViewInit} from '@angular/core';
+import { Component, OnInit ,ViewChild, ViewChildren, AfterViewInit, Pipe} from '@angular/core';
 //import {InvoiceSummaryDialogComponent} from '../../dialogs/invoice-summary-dialog/invoice-summary-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -24,10 +24,10 @@ export class AssetsComponent implements OnInit {
 
    @ViewChild(MatPaginator, {static: false}) Component
 
-  
- 
 
-  
+
+
+
 
   assets: any;
   assetNumber: any;
@@ -63,14 +63,17 @@ export class AssetsComponent implements OnInit {
   }
 
 
-
+  @Pipe({name: 'safeHtml'})
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
 
+  transform(html) {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(html);
+
+  }
 
 
-  
 
 ngOnInit(){
   // this.http.get('/api/asset').subscribe(res => {

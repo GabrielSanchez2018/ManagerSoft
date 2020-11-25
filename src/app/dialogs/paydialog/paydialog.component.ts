@@ -87,11 +87,32 @@ create(_id){
   this.http.get('/api/cart').subscribe(res => {
     this.cart = res;
 
+          /***
+ * This function gives the day number of the year.
+ */
+
+var now = new Date();
+var start = new Date(now.getFullYear(), 0, 0);
+let diff = Math.abs( now.valueOf() - start.valueOf());
+var oneday = 1000 * 60 * 60* 24;
+
+var timerightnow = Math.floor(  oneday / diff);
+
+var diffe = Math.abs( start.valueOf()- now.valueOf());
+var numberoftheyear = Math.floor(diffe / (1000 * 3600 * 24));
+
+console.log('this is the time now', numberoftheyear)
+
+/**
+* Funtion Ends ------
+*/
+
     var customer = this.customer.length
     console.log('this is the customer',customer)
      this.http.post('/api/customer/',{
       customerNumber: customer,
-      lineItems: this.cart
+      lineItems: this.cart,
+      dateNumber: numberoftheyear
      }).subscribe(res =>{
        console.log('copy and paste',res)
      })

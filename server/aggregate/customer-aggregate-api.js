@@ -5,7 +5,8 @@ Description: Customer API
 ==========================*/
 
 const express = require('express');
-const Customer = require('../models/custumer');
+const { isDate } = require('util');
+const CustomerAggregate = require('../models/custumer');
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const router = express.Router();
 
 // Get Customer data
 router.get('/', function(req, res, next){
-  Customer.find({}, function(err, Customers){
+  CustomerAggregate.find({}, function(err, Customers){
     if(err){
       console.log(err);
       return next(err);
@@ -50,24 +51,52 @@ router.get('/purchases-graph', function(req, res, next) {
       }
   });
 });
-
+/***
+ * Aggregation to get the items sold during the day
+ */
 router.get('/recordbydate', function(req, res, next) {
-  Customer.aggregate([
-    //{"$match":{"date_created": {"$gte": new Date(2020-11-23)}}},
+  /**
+   * function to get today's date
+   */
 
+  var today = new Date();
+  Math.ceil((today - new Date(today.getFullYear(),0,1)) / 86400000);
+
+  Date.prototype.getDOY = function() {
+    var onejan = new Date(this.getFullYear(),0,1);
+    return Math.ceil((this - onejan) / 86400000);
+  }
+  var today = new Date();
+  var daynum = today.getDOY();
+//   var today = new Date();
+//   var dd = String(today.getDate()).padStart(2, '0');
+//   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+//   var yyyy = today.getFullYear();
+// //Today variable
+//   today = mm + '-' + dd + '-' + yyyy;
+
+//   var my_date = new Date();
+//   var tomorrow_date = (my_date .getDate()+1)  + "-" + (my_date .getMonth()+1) + "-" + my_date .getFullYear();
+
+  CustomerAggregate.aggregate([
+    //{$match: {dateNumber: { $gte: daynum}} },
     {"$unwind": "$lineItems"},
     {
       "$group": {
         "_id": {
-          "bydate": "$lineItems.date_created",
+
+
+          "date": "$dateNumber",
           "title": "$lineItems.itemDescription",
           "price": "$lineItems.itemPrice",
           "code": "$lineItems.itemCode",
 
+
         },
         "totalprice": {"$sum": "$lineItems.itemPrice" },
         "count": {"$sum": 1},
-      }
+      },
+
     }, {"$sort": {"_id.title": 1}},
   ], function(err, purchaseGraph) {
       if(err) {
@@ -149,7 +178,6 @@ router.post('/', function(req, res, next) {
   let customer = {
     customerNumber: req.body.customerNumber,
     lineItems: req.body.lineItems,
-    dateNumber: req.body.dateNumber
 
   };
   Customer.create(customer, function(err, Customer) {

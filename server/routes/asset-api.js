@@ -8,9 +8,9 @@ const express = require('express');
 const Asset = require('../models/assets');
 const router = express.Router();
 
-var fs = require('fs'); 
-var path = require('path'); 
-require('dotenv/config'); 
+var fs = require('fs');
+var path = require('path');
+require('dotenv/config');
 
 // require('dotenv/config');
 // var fs = require('fs');
@@ -74,8 +74,10 @@ router.get('/', function(req, res, next) {
       console.log(err);
       return next(err);
     } else {
+
       console.log(Assets);
       res.json(Assets);
+
     }
   })
 });
@@ -104,7 +106,7 @@ router.post('/', function(req, res, next) {
     shelf: req.body.shelf,
     bin: req.body.bin,
     img : {
-      data: req.body.image.toString('base64'),
+      data: req.body.image,
       contentType: 'image/png'
   }
   };
