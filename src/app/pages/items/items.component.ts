@@ -11,7 +11,7 @@ import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-crea
 })
 export class ItemsComponent implements OnInit {
 
-  displayedColumns = ['itemCode','itemDescription', 'itemPrice','itemType','functions'];
+  displayedColumns = ['itemCode','itemDescription', 'itemPrice','itemType', 'itemQty','functions'];
   items: any;
   manualitems: any;
 
@@ -61,7 +61,8 @@ export class ItemsComponent implements OnInit {
          itemCode: data.itemCode,
          itemDescription: data.itemDescription,
          itemPrice: data.itemPrice,
-         itemType: data.itemType
+         itemType: data.itemType,
+         itemQty: data.itemQty
 
 
 

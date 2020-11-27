@@ -17,6 +17,7 @@ let itemSchema = mongoose.Schema({
     itemDescription: {type:String},
     itemPrice: {type: String, default: false},
     itemType: {type: String},
+    itemQty: {type: Number},
     date_created: {type: Date, default: new Date()},
     //img:{ data: Buffer, contentType: String}
 

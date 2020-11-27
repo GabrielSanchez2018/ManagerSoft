@@ -100,6 +100,11 @@ table: MatTable<any>;
 
   }
 
+
+  /***
+   *  I hid the button for this function, this fuction gets a copy from the cart and post it into the customer collection. 
+   * 
+   */
   create(){
     /**
      * Passing the Items IPI to the create funtion.
@@ -181,7 +186,9 @@ table: MatTable<any>;
  * Funtion Ends ------
  */
 
-
+/***
+ * This function post with a barcode.
+ */
 
 
      var lineItems = [{
@@ -207,9 +214,7 @@ table: MatTable<any>;
         this.cart = this.cart.concat([res]);
         console.log('this is concat',this.cart)
         this.form.reset();
-        this.dataSource.renderRows();
       })
-      this.dataSource.deleted
       this.cookieService.delete('Item')
     }, err => {
       console.log(err);
@@ -274,7 +279,7 @@ table: MatTable<any>;
   changePageBg(data){
     this.background = data.assetNumber
     this.http.post('/api/cart/',{
-
+      
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,

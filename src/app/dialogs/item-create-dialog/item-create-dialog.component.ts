@@ -32,6 +32,7 @@ export class ItemCreateDialogComponent implements OnInit {
       itemDescription: [null, Validators.compose([Validators.required])],
       itemPrice: [null, Validators.compose([Validators.required])],
       itemType: [null, Validators.compose([Validators.required])],
+      itemQty: [null, Validators.compose([Validators.required])],
 
   });
 

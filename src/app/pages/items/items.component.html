@@ -41,6 +41,11 @@
   <th mat-header-cell *matHeaderCellDef> Type </th>
   <td mat-cell *matCellDef="let element"> {{element.itemType}} </td>
   </ng-container>
+
+  <ng-container matColumnDef="itemQty">
+    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.itemQty}} </td>
+    </ng-container>
   
   <ng-container matColumnDef="functions">
     <th mat-header-cell *matHeaderCellDef>Functions</th>
@@ -108,6 +113,11 @@
     <th mat-header-cell *matHeaderCellDef> Type </th>
     <td mat-cell *matCellDef="let element"> {{element.itemType}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="itemQty">
+      <th mat-header-cell *matHeaderCellDef> Quantity </th>
+      <td mat-cell *matCellDef="let element"> {{element.itemQty}} </td>
+      </ng-container>
     
     <ng-container matColumnDef="functions">
       <th mat-header-cell *matHeaderCellDef>Functions</th>

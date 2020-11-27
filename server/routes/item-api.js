@@ -85,7 +85,8 @@ router.post('/', function(req, res, next) {
     itemCode: req.body.itemCode,
     itemDescription: req.body.itemDescription,
     itemPrice: req.body.itemPrice,
-    itemType: req.body.itemType
+    itemType: req.body.itemType,
+    itemQty: req.body.itemQty
   };
   Item.create(i, function(err, Item) {
     console.log('Here is the Item',Item)

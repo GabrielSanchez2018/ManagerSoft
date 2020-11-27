@@ -86,6 +86,7 @@ create(_id){
   //Posting Cart Data
   this.http.get('/api/cart').subscribe(res => {
     this.cart = res;
+    console.log('items quatity', this.cart.lineItems)
 
           /***
  * This function gives the day number of the year.
@@ -120,12 +121,13 @@ console.log('this is the time now', numberoftheyear)
      //Deleting cart data
      this.http.delete('/api/cart/').subscribe(res =>{
       console.log('Cart deleted', res);
-      this.cart.connect().next(res);
+      
+    
 
     })
     
 //Closing the mondal and updating the table
-
+console.log('this is the cart concat after deleting', this.cart.concat(res) )
     this.dialogRef.close(this.form.value);
     this.cart = this.cart.filter(q => q._id);
     this.dataSource.connect().next(this.cart);
