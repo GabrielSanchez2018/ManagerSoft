@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
@@ -126,9 +126,37 @@ console.log('this is the time now', numberoftheyear)
 
 }
 
+/**
+ * First Table total 
+ * Customer Graph
+ */
+getTotalCost() {
+  return this.customergraph.map(t => t.totalprice).reduce((acc, value) => acc + value, 0);
+}
+
+getTotalItems(){
+  return this.customergraph.map(items =>items.count).reduce((acc, value) => acc + value, 0)
+}
+
+/**
+ * Second table
+ * This bydate api table 
+ */
+getTotalCostbydate(){
+  return this.bydates.map(t => t.totalprice).reduce((acc, value) => acc + value, 0) 
+}
+
+getTotalItemsbydate(){
+  return this.bydates.map(items =>items.count).reduce((acc, value) => acc + value, 0)
+}
+
+
 todayDate(){
   var today = new Date();
- return today
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+  console.log(today.toLocaleDateString('es-ES'));
+ return today.toLocaleDateString('es-ES', options).toUpperCase()
 }
 
 

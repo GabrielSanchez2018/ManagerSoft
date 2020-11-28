@@ -129,8 +129,6 @@ console.log('this is the time now', numberoftheyear)
 //Closing the mondal and updating the table
 console.log('this is the cart concat after deleting', this.cart.concat(res) )
     this.dialogRef.close(this.form.value);
-    this.cart = this.cart.filter(q => q._id);
-    this.dataSource.connect().next(this.cart);
     console.log(this.cart);
 
   }, err => {

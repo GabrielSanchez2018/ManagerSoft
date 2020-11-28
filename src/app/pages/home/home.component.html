@@ -19,27 +19,27 @@
         </ng-container> -->
 
         <ng-container matColumnDef="description" >
-          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <th mat-header-cell *matHeaderCellDef> Descripcion </th>
           <td mat-cell *matCellDef="let element">{{element._id.title}}  </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align: left; color: white; font-size: medium; font-weight: lighter;"> Total </td>
           </ng-container>
 
           <ng-container matColumnDef="price" >
-            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;">{{element._id.price | currency}}  </td>
             <td mat-footer-cell *matFooterCellDef> </td>
             </ng-container>
 
       <ng-container matColumnDef="count">
-        <th mat-header-cell *matHeaderCellDef> Item Count </th>
+        <th mat-header-cell *matHeaderCellDef> Producto Vendido </th>
         <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.count}}  </td>
-        <td mat-footer-cell *matFooterCellDef>  </td>
+        <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;"> {{getTotalItems()}} </td>
         </ng-container>
 
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef> Precio Total </th>
           <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.totalprice | currency}}  </td>
-          <td mat-footer-cell *matFooterCellDef>  </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;"> {{getTotalCost() |currency }} </td>
           </ng-container>
 
 
@@ -65,33 +65,33 @@
   <table class="totaltable" mat-table [dataSource]="bydates">
 
     <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> Date</th>
-    <td mat-cell *matCellDef="let element">{{todayDate() | date}} </td>
-    <td mat-footer-cell *matFooterCellDef> Total</td>
+    <th mat-header-cell *matHeaderCellDef> Fecha</th>
+    <td mat-cell *matCellDef="let element">{{todayDate() }} </td>
+    <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;"> Total</td>
     </ng-container>
 
     <ng-container matColumnDef="description" >
-      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <th mat-header-cell *matHeaderCellDef> Descripcion </th>
       <td mat-cell *matCellDef="let element">{{element._id.title}}  </td>
       <td mat-footer-cell *matFooterCellDef> </td>
       </ng-container>
 
       <ng-container matColumnDef="price" >
-        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let element" style="text-align: center;">{{element._id.price | currency}}  </td>
         <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
   <ng-container matColumnDef="count">
-    <th mat-header-cell *matHeaderCellDef> Item Count </th>
+    <th mat-header-cell *matHeaderCellDef> Producto Vendido </th>
     <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.count}}  </td>
-    <td mat-footer-cell *matFooterCellDef>  </td>
+    <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;"> {{getTotalItemsbydate()}}  </td>
     </ng-container>
 
     <ng-container matColumnDef="total">
       <th mat-header-cell *matHeaderCellDef> Precio Total </th>
       <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.totalprice | currency}}  </td>
-      <td mat-footer-cell *matFooterCellDef>  </td>
+      <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;">{{getTotalCostbydate() | currency}}  </td>
       </ng-container>
 
 

@@ -81,12 +81,15 @@ router.get('/:ItemCode', function(req, res, next) {
 
 //Create Item
 router.post('/', function(req, res, next) {
+
+
   let i = {
     itemCode: req.body.itemCode,
     itemDescription: req.body.itemDescription,
     itemPrice: req.body.itemPrice,
     itemType: req.body.itemType,
-    itemQty: req.body.itemQty
+    itemQty: req.body.itemQty, 
+
   };
   Item.create(i, function(err, Item) {
     console.log('Here is the Item',Item)

@@ -278,12 +278,17 @@ table: MatTable<any>;
   background: any
   changePageBg(data){
     this.background = data.assetNumber
+    var dateFormat = require('dateformat');
+    var now = new Date();
+    const time = dateFormat(now, "longTime");
+    
     this.http.post('/api/cart/',{
       
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,
       itemType: data.itemType,
+      time: time
     }).subscribe(res =>{
       this.cart = this.cart.concat([res]);
       this.displayedColumns;
