@@ -25,6 +25,11 @@
   margin: 0 auto;
 }
 
+.generateReportTable{
+  width: 100%;
+  margin: 0 auto;
+}
+
 
 .mat-header-cell, .mat-footer-row {
   background-color:  #104c91;

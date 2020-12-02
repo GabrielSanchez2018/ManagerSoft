@@ -42,9 +42,6 @@ table: MatTable<any>;
 // Need to remove from the downloaded data first.
 
 
-
-
-
     this.http.get('/api/asset').subscribe(res => {
       this.btnArray = res;
       console.log(this.btnArray)
@@ -81,6 +78,9 @@ table: MatTable<any>;
       this.http.get('/api/cart').subscribe(res => {
         this.cart = res;
          console.log(this.cart)
+         if(Array.isArray(this.cart)){
+          this.cart = this.cart.filter(q => q._id !);
+        }
 
 
 
@@ -102,8 +102,8 @@ table: MatTable<any>;
 
 
   /***
-   *  I hid the button for this function, this fuction gets a copy from the cart and post it into the customer collection. 
-   * 
+   *  I hid the button for this function, this fuction gets a copy from the cart and post it into the customer collection.
+   *
    */
   create(){
     /**
@@ -240,9 +240,15 @@ table: MatTable<any>;
     dialogRef.afterClosed().subscribe(
 
 
+
     );
+    if(Array.isArray(this.cart)){
+      this.cart = this.cart.filter(q => q._id);
+      console.log('THIS CART SORTING', this.cart)
+    }
       console.log( 'concat afeter delete', this.cart.concat([this.dataSource]))
       this.dataSource.cart = []
+
 
 
 
@@ -265,7 +271,6 @@ table: MatTable<any>;
           console.log('Cart item deleted');
           if(Array.isArray(this.cart)){
             this.cart = this.cart.filter(q => q._id !== CartId);
-
           }
 
           console.log(this.cart);
@@ -281,9 +286,9 @@ table: MatTable<any>;
     var dateFormat = require('dateformat');
     var now = new Date();
     const time = dateFormat(now, "longTime");
-    
+
     this.http.post('/api/cart/',{
-      
+
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,

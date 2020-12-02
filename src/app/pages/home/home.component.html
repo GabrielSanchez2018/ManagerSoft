@@ -60,7 +60,7 @@
 
 
 </mat-tab>
-<mat-tab label="By Date">
+<mat-tab label="Por Fecha">
 
   <table class="totaltable" mat-table [dataSource]="bydates">
 
@@ -138,13 +138,13 @@
                     <mat-datepicker [dateClass]="dateClass" #start></mat-datepicker>
                   </mat-form-field>
 
-                  <mat-form-field class="example-full-width" appearance="fill">
+                  <!-- <mat-form-field class="example-full-width" appearance="fill">
 
                     <mat-label>Choose a date</mat-label>
                     <input matInput [matDatepicker]="end" formControlName="end">
                     <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
                     <mat-datepicker [dateClass]="dateClass" #end></mat-datepicker>
-                  </mat-form-field>
+                  </mat-form-field> -->
                 </div>
 
 
@@ -165,8 +165,51 @@
 
 
       </div>
+
       <div class="col-md-6">
 <br>
+
+<table class="generateReportTable" mat-table [dataSource]="report">
+
+  <ng-container matColumnDef="date">
+  <th mat-header-cell *matHeaderCellDef> Fecha</th>
+  <td mat-cell *matCellDef="let element">{{todayDate() }} </td>
+  <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;"> Total</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description" >
+    <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+    <td mat-cell *matCellDef="let element">{{element._id.title}}  </td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price" >
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">{{element._id.price | currency}}  </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+<ng-container matColumnDef="count">
+  <th mat-header-cell *matHeaderCellDef> Producto Vendido </th>
+  <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.count}}  </td>
+  <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;"> {{value}}  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef> Precio Total </th>
+    <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.totalprice | currency}}  </td>
+    <td mat-footer-cell *matFooterCellDef style="text-align: center; color: white; font-size: medium; font-weight: lighter;">  </td>
+    </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns02"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns02;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns01"></tr>
+
+
+
+</table>
 
       </div>
     </div>
