@@ -10,14 +10,14 @@ const mongoose = require('mongoose');
 
 
 
-
 // role schema
 let itemSchema = mongoose.Schema({
     itemCode: {type: Number},
     itemDescription: {type:String},
     itemPrice: {type: String, default: false},
     itemType: {type: String},
-    date_created: {type: Date, default: new Date()},
+    itemQty: {type: Number},
+    date_created: {type: Date },
     //img:{ data: Buffer, contentType: String}
 
 

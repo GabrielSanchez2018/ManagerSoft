@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
@@ -19,10 +19,13 @@ export class HomeComponent implements OnInit {
   data: any;
   displayedColumns = ['description','price','count', 'total'];
   displayedColumns01 = ['date','description','price','count', 'total'];
+  displayedColumns02 = ['date','description','price','count', 'total'];
   code: any;
   bydate: any;
   form: FormGroup;
   bydates: any[];
+  generateReport: any;
+  report: any[];
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private changeDetectorRefs: ChangeDetectorRef, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -126,20 +129,44 @@ console.log('this is the time now', numberoftheyear)
 
 }
 
+/**
+ * First Table total
+ * Customer Graph
+ */
+getTotalCost() {
+  return this.customergraph.map(t => t.totalprice).reduce((acc, value) => acc + value, 0);
+}
+
+getTotalItems(){
+  return this.customergraph.map(items =>items.count).reduce((acc, value) => acc + value, 0)
+}
+
+/**
+ * Second table
+ * This bydate api table
+ */
+getTotalCostbydate(){
+  return this.bydates.map(t => t.totalprice).reduce((acc, value) => acc + value, 0)
+}
+
+getTotalItemsbydate(){
+  return this.bydates.map(items =>items.count).reduce((acc, value) => acc + value, 0)
+}
+
+
 todayDate(){
   var today = new Date();
- return today
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+  // console.log(today.toLocaleDateString('es-ES'));
+ return today.toLocaleDateString('es-ES', options).toUpperCase()
 }
 
 
-getTotalCost() {
-
-  return this.bydates.map(t => t.totalprice).reduce((acc, value) => acc + value, 0);
-}
 
   ngOnInit() {
     this.form = this.fb.group({
-      description: [null, Validators.compose([Validators.required])],
+    //  description: [null, Validators.compose([Validators.required])],
 
       start:  new FormControl('', Validators.required),
       end:  new FormControl('', Validators.required)
@@ -147,5 +174,78 @@ getTotalCost() {
     });
     console.log(this.form)
   }
+
+  create(){
+    const date = this.form.controls['start'].value;
+    const end = this.form.controls['end'].value;
+    console.log('start', date)
+    console.log('end', end)
+
+    /**
+     * Graph
+     */
+
+    this.http.get('/api/customeraggregate/recordbydate').subscribe(res => {
+      this.generateReport = res;
+      console.log('new Api',this.generateReport)
+
+        /**
+     * convert this date into a number of the year date (jJulian Date)
+     */
+
+    const day = date.getUTCDate()
+    const year = date.getUTCFullYear()
+    const month = date.getMonth()
+
+
+    console.log('this is the date we want to edit', date)
+
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    let diff = Math.abs( now.valueOf() - start.valueOf());
+    var oneday = 1000 * 60 * 60* 24;
+
+    var dayNumber = Math.floor(  oneday / diff);
+    console.log('this is the differnce 0000', dayNumber)
+
+
+
+    var diffe = Math.abs( start.valueOf()- date.valueOf());
+    var startDate = Math.floor(diffe / (1000 * 3600 * 24));
+
+    console.log('last day set up', startDate)
+
+
+
+    if(Array.isArray(this.generateReport)){
+      this.report = this.generateReport.filter(element => element._id.date === startDate );
+      console.log('report generated',this.report)
+
+    }
+
+    const value =  this.report.map(t => t.totalprice).reduce((acc, value) => acc + value, 0)
+
+}, err => {
+    console.log(err);
+});
+
+
+
+  }
+
+  /**
+ * Third table
+ * Generate a report by date
+ */
+
+// getTotalCostInputdate(){
+//   return this.report.map(t => t.totalprice).reduce((acc, value) => acc + value, 0)
+// }
+
+// getTotalItemsInputDate(){
+//   return this.report.map(items =>items.count).reduce((acc, value) => acc + value, 0)
+// }
+
+
 
 }

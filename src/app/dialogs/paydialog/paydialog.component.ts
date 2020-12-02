@@ -22,6 +22,8 @@ export class PaydialogComponent implements OnInit{
 
   table: any;
   dataSource: MatTableDataSource<any>;
+  items: Object;
+  update: Object;
 
 
   constructor( private changeDetectorRefs: ChangeDetectorRef, private http: HttpClient,private fb: FormBuilder,private dialogRef: MatDialogRef<PaydialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
@@ -87,6 +89,7 @@ create(_id){
   //Posting Cart Data
   this.http.get('/api/cart').subscribe(res => {
     this.cart = res;
+    console.log('items quatity', this.cart.lineItems)
 
           /***
  * This function gives the day number of the year.
@@ -159,20 +162,43 @@ return d.getDate();
      //Deleting cart data
      this.http.delete('/api/cart/').subscribe(res =>{
       console.log('Cart deleted', res);
-      this.cart.connect().next(res);
+      this.cart = res
+      console.log('updateding shit',this.cart.operationTime)
+
+      if (this.cart.operationTime > 0 ){
+        this.http.get('/api/cart').subscribe(res => {
+          this.cart = res;
+           console.log(this.cart)
+           if(Array.isArray(this.cart)){
+            this.cart = this.cart.filter(q => q._id);
+            console.log('THIS CART SORTING', this.cart)
+          }
+
+
+        }, err => {
+          console.log(err);
+        });
+      }
+
+
 
     })
+    // setTimeout(function(){
 
-//Closing the mondal and updating the table
+
+    // }, 3000)
 
     this.dialogRef.close(this.form.value);
-    this.cart = this.cart.filter(q => q._id);
-    this.dataSource.connect().next(this.cart);
     console.log(this.cart);
 
   }, err => {
     console.log(err);
   });
+
+  //Closing the mondal and updating the table
+
+
+
 }
 
 
