@@ -149,7 +149,10 @@ router.post('/', function(req, res, next) {
   let customer = {
     customerNumber: req.body.customerNumber,
     lineItems: req.body.lineItems,
-    dateNumber: req.body.dateNumber
+    dateNumber: req.body.dateNumber,
+    month: req.body.month,
+    day: req.body.day,
+    dayNumber: req.body.dateNumber
 
   };
   Customer.create(customer, function(err, Customer) {

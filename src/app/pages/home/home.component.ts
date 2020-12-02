@@ -132,6 +132,11 @@ todayDate(){
 }
 
 
+getTotalCost() {
+
+  return this.bydates.map(t => t.totalprice).reduce((acc, value) => acc + value, 0);
+}
+
   ngOnInit() {
     this.form = this.fb.group({
       description: [null, Validators.compose([Validators.required])],

@@ -15,7 +15,8 @@ let lineItemSchema = mongoose.Schema({
     itemPrice: {type: Number},
     itemType: {type: String},
     date_created: {type: Date, default: new Date()},
-    dateNumber: {type: Number}
+    dateNumber: {type: Number},
+
 });
 
 
@@ -24,7 +25,10 @@ let customerSchema = mongoose.Schema({
     customerNumber: {type: Number},
     lineItems: [lineItemSchema],
     date_created: {type: Date, default: new Date()},
-    dateNumber: {type: Number}
+    dateNumber: {type: Number},
+    month: {type: String},
+    day: {type: String},
+    dayNumber: {type: Number}
 });
 
 // export for public use

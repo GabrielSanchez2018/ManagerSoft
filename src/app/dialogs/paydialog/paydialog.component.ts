@@ -1,3 +1,4 @@
+import { getLocaleMonthNames } from '@angular/common';
 import { HttpClient} from '@angular/common/http';
 import { Component, Inject, Input, OnInit, OnChanges, ViewChildren, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -107,12 +108,50 @@ console.log('this is the time now', numberoftheyear)
 * Funtion Ends ------
 */
 
+/****
+ * Get month function
+ */
+function GetMonth(){
+var d = new Date();
+var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+console.log(months[d.getMonth()])
+return months[d.getMonth()]
+}
+/**
+ * Get Day of the week
+ */
+function GetDay() {
+  var d = new Date();
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  var n = weekday[d.getDay()];
+ return n
+}
+/**
+ * Get day number of the month
+ */
+function getDayNumber(){
+var d = new Date();
+return d.getDate();
+}
+
     var customer = this.customer.length
+    console.log('month',GetMonth())
     console.log('this is the customer',customer)
      this.http.post('/api/customer/',{
       customerNumber: customer,
       lineItems: this.cart,
-      dateNumber: numberoftheyear
+      dateNumber: numberoftheyear,
+      month: GetMonth(),
+      day: GetDay(),
+      dayNumber: getDayNumber()
      }).subscribe(res =>{
        console.log('copy and paste',res)
      })
@@ -123,7 +162,7 @@ console.log('this is the time now', numberoftheyear)
       this.cart.connect().next(res);
 
     })
-    
+
 //Closing the mondal and updating the table
 
     this.dialogRef.close(this.form.value);
