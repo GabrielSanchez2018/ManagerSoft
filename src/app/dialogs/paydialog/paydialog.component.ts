@@ -84,7 +84,7 @@ getChange(){
 return Math.abs(total)
 }
 
-create(_id){
+create(){
 
   //Posting Cart Data
   this.http.get('/api/cart').subscribe(res => {
@@ -160,35 +160,19 @@ return d.getDate();
      })
 
      //Deleting cart data
-     this.http.delete('/api/cart/').subscribe(res =>{
-      console.log('Cart deleted', res);
-      this.cart = res
-      console.log('updateding shit',this.cart.operationTime)
+     this.http.delete('/api/cart' ).subscribe(res => {
+      console.log('cart deleted');
 
-      if (this.cart.operationTime > 0 ){
-        this.http.get('/api/cart').subscribe(res => {
-          this.cart = res;
-           console.log(this.cart)
-           if(Array.isArray(this.cart)){
-            this.cart = this.cart.filter(q => q._id);
-            console.log('THIS CART SORTING', this.cart)
-          }
-
-
-        }, err => {
-          console.log(err);
-        });
-      }
-
-
-
-    })
+      //this.barcodes = this.barcodes.filter(q => q._id !== barcodeId);
+      console.log(this.cart);
+    });
     // setTimeout(function(){
 
 
     // }, 3000)
-
+    delete this.cart
     this.dialogRef.close(this.form.value);
+
     console.log(this.cart);
 
   }, err => {

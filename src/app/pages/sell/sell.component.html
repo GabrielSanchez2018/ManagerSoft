@@ -37,6 +37,7 @@
             <ng-container matColumnDef="itemDescription">
               <th mat-header-cell *matHeaderCellDef> Description </th>
               <td mat-cell *matCellDef="let element">{{element.itemDescription}}  </td>
+              <td mat-cell *matCellDef="let element">{{element.itemType}}  </td>
               <td mat-footer-cell *matFooterCellDef> Total </td>
               </ng-container>
 
@@ -133,7 +134,7 @@
 
         </mat-tab-group>
     </div>
-  
+
   </div>
 
 </div>

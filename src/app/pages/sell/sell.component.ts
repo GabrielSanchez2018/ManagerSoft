@@ -230,24 +230,32 @@ table: MatTable<any>;
 
 
   openPayDialog() {
-
-
     const dialogRef = this.dialog.open(PaydialogComponent, {
       disableClose: true
     });
+    dialogRef.afterClosed().subscribe( res =>{
+ //Deleting cart data
+ this.http.delete('/api/cart' ).subscribe(res => {
+  console.log('cart deleted');
+
+  //this.barcodes = this.barcodes.filter(q => q._id !== barcodeId);
+  console.log('this cart',this.cart);
+
+});
+
+// var empty = []
+
+// empty.push(this.cart)
+
+this.cart = this.cart.concat([]);
+console.log('this concat asdf', this.cart)
 
 
-    dialogRef.afterClosed().subscribe(
 
-
+    }
 
     );
-    if(Array.isArray(this.cart)){
-      this.cart = this.cart.filter(q => q._id);
-      console.log('THIS CART SORTING', this.cart)
-    }
-      console.log( 'concat afeter delete', this.cart.concat([this.dataSource]))
-      this.dataSource.cart = []
+
 
 
 

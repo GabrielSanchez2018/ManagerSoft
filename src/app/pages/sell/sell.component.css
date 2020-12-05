@@ -45,12 +45,15 @@ tr.mat-footer-row {
 
 
 .mat-header-cell {
-  background-color:  #1f8ac0;
+  background-color:  black;
+  color: white;
 }
 .mat-cell{
   border-right-width: 1px;
   border-right-style:double;
-  border-right-color: lightgray;
+  border-right-color: gray;
+  background-color: #383c42;
+  color: white;
 
 }
 
@@ -68,16 +71,16 @@ tr.mat-footer-row {
 
 .sellbutton{
   margin: 10px 10px 10px 10px;
-  width: auto; 
-  height: 100px; 
-  text-rendering: auto; 
+  width: auto;
+  height: 100px;
+  text-rendering: auto;
   text-align: center;
 
 }
 
-.sellbutton:hover{
-  background-color:  #1f8ac0; /* Green */
+/* .sellbutton:hover{
+  background-color:  #1f8ac0;
   color: white;
   font-size: 20px;
   font-weight: lighter;
-}
+} */
