@@ -6,9 +6,6 @@ Description: Custumer
 
 const mongoose = require('mongoose');
 //const assetTypeSchema = require('../models/asset-type')
-
-
-
 let lineItemSchema = mongoose.Schema({
   itemCode: {type: Number},
     itemDescription: {type:String},
@@ -16,6 +13,7 @@ let lineItemSchema = mongoose.Schema({
     itemType: {type: String},
     date_created: {type: Date, default: new Date()},
     dateNumber: {type: Number},
+    time: {type: String}
 
 });
 

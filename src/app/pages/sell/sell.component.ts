@@ -285,7 +285,7 @@ table: MatTable<any>;
     this.background = data.assetNumber
     var dateFormat = require('dateformat');
     var now = new Date();
-    const time = dateFormat(now, "longTime");
+    const time = dateFormat(now, "isoDate");
 
     this.http.post('/api/cart/',{
 
@@ -309,12 +309,16 @@ table: MatTable<any>;
 
   changePage(data){
     this.background = data.assetNumber
+    var dateFormat = require('dateformat');
+    var now = new Date();
+    const time = dateFormat(now, "isoDate");
     this.http.post('/api/cart/',{
 
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,
       itemType: data.itemType,
+      time: time
     }).subscribe(res =>{
       this.cart = this.cart.concat([res]);
       console.log('this is concat',this.cart)

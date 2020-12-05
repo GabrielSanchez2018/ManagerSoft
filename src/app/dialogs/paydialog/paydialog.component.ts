@@ -145,7 +145,7 @@ function getDayNumber(){
 var d = new Date();
 return d.getDate();
 }
-
+    console.log('this is the cart at when click the pay button', this.cart)
     var customer = this.customer.length
     console.log('month',GetMonth())
     console.log('this is the customer',customer)
