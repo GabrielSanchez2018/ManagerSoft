@@ -17,3 +17,9 @@
   text-align: center;
   margin: 0 auto;
 }
+.aceptarButton{
+  background-color: lightblue;
+}
+.cancelarButton{
+  background-color: lightcoral;
+}

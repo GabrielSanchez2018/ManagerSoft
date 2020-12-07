@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {MatTable} from '@angular/material';
 import { MatTableDataSource } from '@angular/material/table';
 import { id } from '@swimlane/ngx-datatable';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-paydialog',
@@ -52,6 +53,7 @@ export class PaydialogComponent implements OnInit{
 
 
 
+
   customerNumber(){
     var x = this.customer.length
     return x
@@ -71,6 +73,15 @@ export class PaydialogComponent implements OnInit{
  */
   getTotalCost() {
     return this.cart.map(t => t.itemPrice).reduce((acc, value) => acc + value, 0);
+  }
+/**
+ * this function will get the hour time
+ */
+  getDate(){
+    var dateFormat = require('dateformat');
+    var now = new Date();
+    const time = dateFormat(now, "longTime");
+    return time
   }
 /**
  * This is the change function
@@ -144,7 +155,7 @@ function getDayNumber(){
 var d = new Date();
 return d.getDate();
 }
-
+    console.log('this is the cart at when click the pay button', this.cart)
     var customer = this.customer.length
     console.log('month',GetMonth())
     console.log('this is the customer',customer)
@@ -157,27 +168,15 @@ return d.getDate();
       dayNumber: getDayNumber()
      }).subscribe(res =>{
        console.log('copy and paste',res)
+       this.http.delete('/api/cart').subscribe(res =>{
+         console.log('cart deleted')
+
+       })
      })
 
-     //Deleting cart data
-     this.http.delete('/api/cart' ).subscribe(res => {
-      console.log('cart deleted');
-
-      //this.barcodes = this.barcodes.filter(q => q._id !== barcodeId);
-      console.log(this.cart);
-    });
-    // setTimeout(function(){
-
-
-    // }, 3000)
-    delete this.cart
-    this.dialogRef.close(this.form.value);
-
-    console.log(this.cart);
-
-  }, err => {
-    console.log(err);
   });
+  console.log('testign')
+  this.dialogRef.close(this.form.value);
 
   //Closing the mondal and updating the table
 

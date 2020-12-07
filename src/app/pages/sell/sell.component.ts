@@ -100,6 +100,21 @@ table: MatTable<any>;
 
   }
 
+  refresh(){
+    setTimeout(function(){
+
+      this.http.get('/api/cart').subscribe(res => {
+        this.cart = res;
+         console.log(this.cart)
+
+      })
+      this.cart.concat()
+      alert('hello', )
+
+
+    }, 1000)
+  }
+
 
   /***
    *  I hid the button for this function, this fuction gets a copy from the cart and post it into the customer collection.
@@ -234,34 +249,17 @@ table: MatTable<any>;
       disableClose: true
     });
     dialogRef.afterClosed().subscribe( res =>{
- //Deleting cart data
- this.http.delete('/api/cart' ).subscribe(res => {
-  console.log('cart deleted');
-
-  //this.barcodes = this.barcodes.filter(q => q._id !== barcodeId);
-  console.log('this cart',this.cart);
-
-});
-
-// var empty = []
-
-// empty.push(this.cart)
-
-this.cart = this.cart.concat([]);
-console.log('this concat asdf', this.cart)
-
-
-
+      
+      //this will create a new empty array
+      this.cart = new Array
+      console.log('after close on opendialog',this.cart)
+      this.cart = this.cart.filter(this.cart);
     }
 
+
     );
-
-
-
-
-
-
   }
+
 
 
   delete(CartId) {
@@ -293,7 +291,7 @@ console.log('this concat asdf', this.cart)
     this.background = data.assetNumber
     var dateFormat = require('dateformat');
     var now = new Date();
-    const time = dateFormat(now, "longTime");
+    const time = dateFormat(now, "isoDate");
 
     this.http.post('/api/cart/',{
 
@@ -317,12 +315,16 @@ console.log('this concat asdf', this.cart)
 
   changePage(data){
     this.background = data.assetNumber
+    var dateFormat = require('dateformat');
+    var now = new Date();
+    const time = dateFormat(now, "isoDate");
     this.http.post('/api/cart/',{
 
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,
       itemType: data.itemType,
+      time: time
     }).subscribe(res =>{
       this.cart = this.cart.concat([res]);
       console.log('this is concat',this.cart)

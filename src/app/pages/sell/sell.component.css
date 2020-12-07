@@ -36,7 +36,6 @@ tr.mat-footer-row {
 ::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
 ::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
   background-color: white;
-
   color: #1f8ac0;
   opacity: 1;
   font-size: 20px;
@@ -76,6 +75,9 @@ tr.mat-footer-row {
   text-rendering: auto;
   text-align: center;
 
+}
+.mat-tab{
+  color: white;
 }
 
 /* .sellbutton:hover{

@@ -37,7 +37,6 @@
             <ng-container matColumnDef="itemDescription">
               <th mat-header-cell *matHeaderCellDef> Description </th>
               <td mat-cell *matCellDef="let element">{{element.itemDescription}}  </td>
-              <td mat-cell *matCellDef="let element">{{element.itemType}}  </td>
               <td mat-footer-cell *matFooterCellDef> Total </td>
               </ng-container>
 
@@ -52,7 +51,7 @@
 
             <ng-container matColumnDef="itemPrice">
               <th mat-header-cell *matHeaderCellDef> Price </th>
-              <td mat-cell *matCellDef="let element">{{element.itemPrice}}  </td>
+              <td mat-cell *matCellDef="let element">${{element.itemPrice}}  </td>
               <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
               </ng-container>
 
@@ -102,13 +101,13 @@
 
 
 
-      <mat-tab-group mat-align-tabs="center" style="background-color:  #1f8ac0; color: #EFc9af;">
+      <mat-tab-group mat-align-tabs="center" style="background-color:rgb(37, 36, 36); color: white;">
         <mat-tab label="Productos">
 
 
 <!--
 <button mat-raised-button (click)="createPan()" color="warn">Pan</button> -->
-<mat-card style="width: 100%; margin: 0 auto; background-color: lightskyblue">
+<mat-card style="width: 100%; margin: 0 auto; background-color: rgb(21, 22, 21)">
 
   <div *ngFor="let button of items" style=" display:inline; white-space:nowrap; " [ngStyle]="{'background-color': background}">
     <button mat-raised-button class="sellbutton" (click)="changePageBg(button)" >

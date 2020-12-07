@@ -172,21 +172,32 @@ router.delete('/:CartId', function(req, res, next) {
   });
 });
 
-
 router.delete('/', function(req, res, next) {
-  console.log("db connect");
-  var db = mongoose.connection;
-  db.dropCollection("carts", function (err, result) {
-      if (err) {
-          console.log("error delete collection");
-      } else {
-
-          console.log("delete collection success");
-
-      }
-
+  Cart.deleteMany({}, function(err, Cart) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(Cart);
+      res.json(Cart);
+    }
   });
 });
+
+// router.delete('/', function(req, res, next) {
+//   console.log("db connect");
+//   var db = mongoose.connection;
+//   db.dropCollection("carts", function (err, result) {
+//       if (err) {
+//           console.log("error delete collection");
+//       } else {
+
+//           console.log("delete collection success");
+
+//       }
+
+//   });
+// });
 
 // router.delete('/alldelete', function () {
 //   console.log("db connect");
