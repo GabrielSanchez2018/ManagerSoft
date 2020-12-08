@@ -249,7 +249,7 @@ table: MatTable<any>;
       disableClose: true
     });
     dialogRef.afterClosed().subscribe( res =>{
-      
+
       //this will create a new empty array
       this.cart = new Array
       console.log('after close on opendialog',this.cart)

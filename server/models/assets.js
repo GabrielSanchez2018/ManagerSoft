@@ -24,7 +24,9 @@ let assetsSchema = mongoose.Schema({
     shelf: {type:String},
     bin: {type: String},
     date_created: {type: Date, default: new Date()},
-    img:{ data: Buffer, contentType: String}
+    img:{
+      data: Buffer,
+      contentType: String}
 
 
 
