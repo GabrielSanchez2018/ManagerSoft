@@ -96,10 +96,10 @@ export class AssetCreateComponent implements OnInit {
       location: [null, Validators.compose([Validators.required])],
       shelf: [null, Validators.compose([Validators.required])],
       bin: [null, Validators.compose([Validators.required])],
-      image: [null, Validators.compose([Validators.required])],
+      img: [null, Validators.compose([Validators.required])],
 
     });
-    console.log('this asset type', this.form.image)
+    console.log('this asset type', this.form.img)
     console.log('selected', this.selectedValue)
   }
 

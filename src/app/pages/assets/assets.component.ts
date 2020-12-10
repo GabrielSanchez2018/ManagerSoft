@@ -2,7 +2,7 @@ import { Component, OnInit ,ViewChild, ViewChildren, AfterViewInit, Pipe} from '
 //import {InvoiceSummaryDialogComponent} from '../../dialogs/invoice-summary-dialog/invoice-summary-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AssetCreateComponent } from '../../dialogs/asset-create/asset-create.component';
 import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
@@ -113,10 +113,13 @@ openCreateAssetDialog() {
 
     console.log('this si the data ', data)
     if (data) {
-      console.log('this is asset number',data.image)
+      console.log('this is asset number',data.img)
 
       this.http.post('/api/asset/' , {
-
+        headers: new HttpHeaders({
+          'Authorization': 'my-auth-token',
+          'x-header': 'x-value'
+        }),
         assetNumber: data.assetNumber,
         assetTyp: data.assetTyp,
         assetModel: data.assetModel,
@@ -124,7 +127,7 @@ openCreateAssetDialog() {
         location: data.location,
         shelf: data.shelf,
         bin: data.bin,
-        image: data.image
+        img: data.img
 
 
 

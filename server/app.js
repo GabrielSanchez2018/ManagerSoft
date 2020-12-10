@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({'extended': true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../dist/bcrs')));
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
+app.use('/uploads', express.static('uploads'))
 
 /**
  * Variables

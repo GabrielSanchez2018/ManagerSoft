@@ -7,34 +7,42 @@ Description: all API's used for Assets
 const express = require('express');
 const Asset = require('../models/assets');
 const router = express.Router();
-var bodyParser = require('body-parser');
+const multer = require('multer');
+
+
+
 
 var fs = require('fs');
 var path = require('path');
 require('dotenv/config');
 
 
-router.use(bodyParser.urlencoded({ extended: false }))
-router.use(bodyParser.json())
+// router.use(bodyParser.urlencoded({ extended: false }))
+// router.use(bodyParser.json())
 
-var multer = require('multer');
+// require multer
 
 
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'uploads')
+      cb(null, './uploads/')
   },
   filename: (req, file, cb) => {
-      cb(null, body.image + '-' + Date.now())
+      cb(null, file.originalname + '-' + Date.now())
+      console.log('file',file)
   }
+
 });
 
 var upload = multer({ storage: storage });
 
 
+// console.log(storage)
+
 //Create Asset
-router.post('/', upload.single('image'), function(req, res, next) {
+router.post('/', upload.single('img'), (req, res, next) => {
+  console.log('this is the file',req.file)
   let r = {
     assetNumber: req.body.assetNumber,
     assetTyp: req.body.assetTyp,
@@ -43,12 +51,9 @@ router.post('/', upload.single('image'), function(req, res, next) {
     location: req.body.location,
     shelf: req.body.shelf,
     bin: req.body.bin,
-    img : {
-      data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.body.image)),
-      contentType: 'image/png'
-          }
+    img : req.file.path
   };
-  console.log('req.body', )
+  //console.log('req.body',req.file.filename )
   Asset.create(r, function(err, Asset) {
     console.log('Here is the asset',Asset)
     if (err) {
