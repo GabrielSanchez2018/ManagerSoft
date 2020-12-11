@@ -20,3 +20,6 @@ background-color: lightblue;
   /*change color of label*/
   color: #104c91 !important;
  }
+ p {
+  font-family: Lato;
+}

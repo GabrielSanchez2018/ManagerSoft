@@ -18,6 +18,8 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
   styleUrls: ['./asset-create.component.css']
 })
 
+
+
 export class AssetCreateComponent implements OnInit {
   public modeselect = 'domain';
   form: any;
@@ -32,8 +34,10 @@ export class AssetCreateComponent implements OnInit {
 
 
 
+
   @ViewChild("fileInput", {static: false}) fileInput: ElementRef;
   files  = [];
+  fileUpload: any;
 
 
   constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
@@ -83,7 +87,16 @@ export class AssetCreateComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+
+
   }
+
+
+
+
+
+
+
 
 
   ngOnInit() {
@@ -99,12 +112,57 @@ export class AssetCreateComponent implements OnInit {
       img: [null, Validators.compose([Validators.required])],
 
     });
-    console.log('this asset type', this.form.img)
+    console.log('this asset type', this.form)
     console.log('selected', this.selectedValue)
   }
 
-  submit(){
-    this.dialogRef.close(this.form.value);
+  // importFile(event) {
+
+  //   if (event.target.files.length == 0) {
+  //      console.log("No file selected!");
+  //      return
+  //   }
+
+
+  //     const file: File = event.target.files[0];
+
+
+
+  //     // after here 'file' can be accessed and used for further process
+
+
+
+  //   }
+
+
+
+  submit(event){
+    if (event.target.files.length == 0) {
+      console.log("No file selected!");
+      return
+   }
+   var file: File = event.target.files[0];
+   console.log(file)
+
+   const formdata = new FormData();
+   formdata.append('file', file)
+   console.log('data afer form data', file)
+
+   var z = {
+    assetNumber: this.form.value.assetNumber,
+    assetTyp: this.form.value.assetTyp,
+    assetModel: this.form.value.assetModel,
+    types: this.form.value.types,
+    location: this.form.value.location,
+    shelf: this.form.value.shelf,
+    bin: this.form.value.bin,
+    img: file
+   }
+
+    this.dialogRef.close(z);
+
+
+
   }
 
   close(){

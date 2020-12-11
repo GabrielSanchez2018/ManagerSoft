@@ -109,17 +109,22 @@ openCreateAssetDialog() {
     disableClose: true
   });
 
-  dialogRef.afterClosed().subscribe(data => {
+  dialogRef.afterClosed().subscribe(data=> {
+
+    dialogRef.afterClosed().subscribe(file =>{
+      console.log('image file',file)
+    })
 
     console.log('this si the data ', data)
     if (data) {
-      console.log('this is asset number',data.img)
 
-      this.http.post('/api/asset/' , {
-        headers: new HttpHeaders({
-          'Authorization': 'my-auth-token',
-          'x-header': 'x-value'
-        }),
+
+      console.log('this is asset number',data)
+
+      this.http.post('/api/asset/', {
+
+        headers: {'Content-Type': undefined},
+
         assetNumber: data.assetNumber,
         assetTyp: data.assetTyp,
         assetModel: data.assetModel,

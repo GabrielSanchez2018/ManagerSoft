@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="example-form">
+<form [formGroup]="form" class="example-form" enctype="multipart/form-data" method="POST">
   <mat-form-field class="example-full-width">
     <mat-label>Company (disabled)</mat-label>
     <input matInput disabled value="Greater Omaha Packing">
@@ -60,9 +60,19 @@
 
   &nbsp;
 
-  <label for="image">Upload Image</label>
-  <input [formControl]="form.controls['img']" type="File" id="image"
-         name="image" value="" required>
+
+    <!-- <label for="image">Upload Image</label>
+    <input [formControl]="form.controls['img']"
+    type="file" id="image"
+           name="image" value="" > -->
+
+           <input #fileUpload method="post" type="file" name="img" (click)="fileUpload.value = null"(change)="submit($event)" style="display:none"
+           accept="image/*">
+           <button (click)="fileUpload.click()"> Upload  </button>
+
+
+
+
   <!-- <mat-form-field>
     <label for="singleFile">Upload file</label>
     <input id="singleFile" [formControl]="form.controls['']" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
@@ -70,7 +80,7 @@
 
     <mat-file-upload-queue #fileUploadQueue
         [fileAlias]="'file'"
-        [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
+        [httpUrl]="'http://localhost:3000/'">
 
 
         <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
@@ -92,3 +102,11 @@
     <button mat-button  (click)="submit()">Save</button>
   </mat-dialog-actions>
 </form>
+
+<!-- <form action="/stats"  method="post">
+  <div class="form-group">
+    <input type="file" class="form-control-file" name="uploaded_file">
+    <input type="text" class="form-control" placeholder="Number of speakers" name="nspeakers">
+    <input type="submit" value="Get me the stats!" class="btn btn-default">
+  </div>
+</form> -->

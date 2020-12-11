@@ -38,11 +38,11 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-// console.log(storage)
+ console.log(storage)
 
 //Create Asset
 router.post('/', upload.single('img'), (req, res, next) => {
-  console.log('this is the file',req.file)
+  console.log('this is the file',req.file, req.body)
   let r = {
     assetNumber: req.body.assetNumber,
     assetTyp: req.body.assetTyp,
