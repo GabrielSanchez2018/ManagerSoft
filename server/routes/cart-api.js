@@ -89,7 +89,8 @@ router.post('/', function(req, res, next) {
     itemDescription: req.body.itemDescription,
     itemPrice: req.body.itemPrice,
     itemType: req.body.itemType,
-    time: req.body.time
+    time: req.body.time,
+    img: req.body.img
   };
   Cart.create(i, function(err, Cart) {
     console.log('Here is the Cart',Cart)

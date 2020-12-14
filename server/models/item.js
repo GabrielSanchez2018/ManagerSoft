@@ -14,10 +14,11 @@ const mongoose = require('mongoose');
 let itemSchema = mongoose.Schema({
     itemCode: {type: Number},
     itemDescription: {type:String},
-    itemPrice: {type: String, default: false},
+    itemPrice: {type: String,},
     itemType: {type: String},
     itemQty: {type: Number},
     date_created: {type: Date },
+    img:{ type: String}
     //img:{ data: Buffer, contentType: String}
 
 

@@ -23,3 +23,8 @@
 .cancelarButton{
   background-color: lightcoral;
 }
+
+.image{
+  width: auto;
+  margin: 0 auto;
+}

@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {MatTable} from '@angular/material';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { id } from '@swimlane/ngx-datatable';
 import { EMPTY } from 'rxjs';
 
@@ -27,7 +28,7 @@ export class PaydialogComponent implements OnInit{
   update: Object;
 
 
-  constructor( private changeDetectorRefs: ChangeDetectorRef, private http: HttpClient,private fb: FormBuilder,private dialogRef: MatDialogRef<PaydialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor( private changeDetectorRefs: ChangeDetectorRef,private router: Router, private http: HttpClient,private fb: FormBuilder,private dialogRef: MatDialogRef<PaydialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
 
     this.http.get('/api/cart').subscribe(res => {
       this.cart = res;
@@ -171,6 +172,10 @@ return d.getDate();
        this.http.delete('/api/cart').subscribe(res =>{
          console.log('cart deleted')
 
+      //     this.cart = new Array
+      // console.log('after close on opendialog',this.cart)
+      // this.cart = this.cart.filter(this.cart);
+
        })
      })
 
@@ -190,7 +195,14 @@ return d.getDate();
 
 
 close(){
+  // this.cart = new Array
+  this.router.navigate(['/sell']);
+  // this.cart = this.cart
+  // console.log('after close on opendialog',this.cart)
+
   this.dialogRef.close();
+
+  // this.cart = this.cart.concat(this.cart)
 
 }
 

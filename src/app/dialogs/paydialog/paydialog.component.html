@@ -1,4 +1,9 @@
 <mat-card style="width: 500px;">
+
+    <img src="../../../assets/Screen Shot 2020-12-13 at 1.16.44 PM.png"  style="width: 200px; margin-top: 1px; margin: 0 auto;" > &nbsp;&nbsp;
+
+
+
   <h2 class="clientText" > <span style="color: black;"> {{getDate()}}</span></h2>
   <h2 class="clientText" >Cliente # <span style="color: black;"> {{customerNumber()}}</span></h2>
 <br>
@@ -6,7 +11,7 @@
 
 
 
-  <h2 class="priceText" >Total: <span style="color: green;"> ${{getTotalCost()}}</span></h2>
+  <h2 class="priceText" >Total: <span style="color: green;"> {{getTotalCost() | currency}}</span></h2>
   <br>
   <hr>
 
@@ -25,7 +30,7 @@
 
 
 <div *ngIf="show">
-  <h2 style="font-weight: lighter;">Cambio:  <span style="color: red; font-weight: lighter;">${{getChange()}}</span></h2>
+  <h2 style="font-weight: lighter;">Cambio:  <span style="color: red; font-weight: lighter;">{{getChange() | currency}}</span></h2>
 </div>
 
 

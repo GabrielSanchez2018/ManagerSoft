@@ -7,6 +7,7 @@ Description: all API's used for Manual ManualItems
 const express = require('express');
 const ManualItem = require('../models/manualitems');
 const router = express.Router();
+const multer = require('multer');
 
 require('dotenv/config');
 var fs = require('fs');
@@ -16,42 +17,21 @@ var fs = require('fs');
 
 
 
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './uploads/')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname + '-' + Date.now())
+      console.log('file',file)
+  }
 
-// Image get
+});
 
-// router.get('/', (req, res) => {
-//   Item.find({}, (err, items) => {
-//       if (err) {
-//           console.log(err);
-//       }
-//       else {
-//           // res.render('app', { items: items });
-//       }
-//   });
-// });
-
-// // Uploading the image
-// router.post('/', upload.single('image'), (req, res, next) => {
-
-//   var img = {
-//           data: req.body.filename,
-//           contentType: 'image/png'
-//       }
-
-//   Item.create(img, (err, item) => {
-//       if (err) {
-//           console.log(err);
-//       }
-//       else {
-//           // item.save();
-//           console.log(item)
-
-//       }
-//   });
-// });
+var upload = multer({ storage: storage });
 
 
-
+ console.log(storage)
 
 //Find all ManualItems
 router.get('/', function(req, res, next) {
@@ -80,12 +60,14 @@ router.get('/:ManualItemCode', function(req, res, next) {
 });
 
 //Create ManualItem
-router.post('/', function(req, res, next) {
+router.post('/',upload.single('img'), function(req, res, next) {
   let i = {
     itemCode: req.body.itemCode,
     itemDescription: req.body.itemDescription,
     itemPrice: req.body.itemPrice,
-    itemType: req.body.itemType
+    itemType: req.body.itemType,
+    img: req.file.path
+
   };
   ManualItem.create(i, function(err, ManualItem) {
     console.log('Here is the ManualItem',ManualItem)

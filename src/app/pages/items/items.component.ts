@@ -11,7 +11,7 @@ import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-crea
 })
 export class ItemsComponent implements OnInit {
 
-  displayedColumns = ['itemCode','itemDescription', 'itemPrice','itemType', 'itemQty','functions'];
+  displayedColumns = ['image','itemCode','itemDescription', 'itemPrice','itemType', 'itemQty','functions'];
   items: any;
   manualitems: any;
 
@@ -34,7 +34,7 @@ export class ItemsComponent implements OnInit {
       this.http.get('/api/manualitems').subscribe(res => {
         this.manualitems = res;
         console.log('items Manuales',this.manualitems)
-  
+
         // var img = this.assets.img
         // img = 'data:image/png;base64,' + this.inspectionDetails.reportImage;
       }, err => {
@@ -54,15 +54,10 @@ export class ItemsComponent implements OnInit {
 
       console.log('this si the data ', data)
       if (data) {
-        console.log('this is asset number',data.image)
+        console.log('this is asset number',data)
 
-        this.http.post('/api/items/' , {
+        this.http.post('/api/items/' ,data, {
 
-         itemCode: data.itemCode,
-         itemDescription: data.itemDescription,
-         itemPrice: data.itemPrice,
-         itemType: data.itemType,
-         itemQty: data.itemQty
 
 
 
@@ -76,7 +71,7 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  
+
   openManualCreateItemDialog(){
     const dialogRef = this.dialog.open(ItemCreateDialogComponent, {
       disableClose: true
@@ -88,12 +83,9 @@ export class ItemsComponent implements OnInit {
       if (data) {
         console.log('this is asset number',data.image)
 
-        this.http.post('/api/manualitems/' , {
+        this.http.post('/api/manualitems/' ,data, {
 
-         itemCode: data.itemCode,
-         itemDescription: data.itemDescription,
-         itemPrice: data.itemPrice,
-         itemType: data.itemType
+
 
 
 

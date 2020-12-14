@@ -12,7 +12,7 @@
 .navbar-link {
   font-size: 24px;
   font-weight: lighter;
-  color: white;
+  color: color black;
 }
 
 .main-content {
@@ -41,10 +41,10 @@
 }
 
 .mat-toolbar{
- background-color: #104c91;
+ background-color: white;
  color: black;
 }
 
 .mat-toolbar-row {
-  color: white;
+  color: black;
 }

@@ -21,6 +21,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { ChartModule } from 'primeng/chart';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 
 
@@ -110,6 +111,7 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
     ChartModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    AngularFileUploaderModule,
 
 
 

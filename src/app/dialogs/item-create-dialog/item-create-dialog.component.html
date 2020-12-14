@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="example-form">
+<form [formGroup]="form" class="example-form" enctype="multipart/form-data" method="POST" name='img'>
 
   <table class="example-full-width" cellspacing="0"><tr>
     <td><mat-form-field class="example-full-width">
@@ -27,7 +27,11 @@
 
 
 
+
+
 </table>
+
+  <input type="file" name="img" multiple (change)="selectImage($event)"/>
 
 
 

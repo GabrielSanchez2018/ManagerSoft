@@ -18,7 +18,7 @@ export class SellComponent implements OnInit {
 
 
 
-  displayedColumns = ['itemDescription', 'itemType','itemPrice', 'functions'];
+  displayedColumns = ['image','itemDescription', 'itemPrice', 'functions'];
   form: any;
   items: any;
   itemScan: any;
@@ -207,6 +207,7 @@ table: MatTable<any>;
 
 
      var lineItems = [{
+      img: this.item.img,
       itemCode:this.item.itemCode,
       itemDescription:  this.item.itemDescription,
       itemPrice: this.item.itemPrice,
@@ -219,6 +220,7 @@ table: MatTable<any>;
 
 
       this.http.post('/api/cart/',{
+        img: this.item.img,
         lineItems: lineItems,
         itemCode: this.item.itemCode,
         itemDescription: this.item.itemDescription,
@@ -253,7 +255,7 @@ table: MatTable<any>;
       //this will create a new empty array
       this.cart = new Array
       console.log('after close on opendialog',this.cart)
-      this.cart = this.cart.filter(this.cart);
+      this.cart = this.cart.concat(this.cart);
     }
 
 
@@ -292,9 +294,10 @@ table: MatTable<any>;
     var dateFormat = require('dateformat');
     var now = new Date();
     const time = dateFormat(now, "isoDate");
+    console.log(data.img)
 
     this.http.post('/api/cart/',{
-
+      img: data.img,
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,
@@ -319,7 +322,7 @@ table: MatTable<any>;
     var now = new Date();
     const time = dateFormat(now, "isoDate");
     this.http.post('/api/cart/',{
-
+      img: data.img,
       itemCode: data.itemCode,
       itemDescription: data.itemDescription,
       itemPrice: data.itemPrice,

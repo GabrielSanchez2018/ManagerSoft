@@ -17,7 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./asset-checkout.component.css']
 })
 export class AssetCheckoutComponent implements OnInit {
-  displayedColumns = ['assetNumber',
+  displayedColumns = ['image','assetNumber',
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date'];
   asset: any;
   AssetNumber: string;

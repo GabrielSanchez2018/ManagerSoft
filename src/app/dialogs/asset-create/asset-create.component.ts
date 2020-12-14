@@ -31,6 +31,12 @@ export class AssetCreateComponent implements OnInit {
   shelf: Object;
   bin: Object;
 
+//   afuConfig = {
+//     uploadAPI: {
+//       url:"http://localhost:3000/api/asset/"
+//     }
+// };
+
 
 
 
@@ -38,6 +44,7 @@ export class AssetCreateComponent implements OnInit {
   @ViewChild("fileInput", {static: false}) fileInput: ElementRef;
   files  = [];
   fileUpload: any;
+  image: File;
 
 
   constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
@@ -89,6 +96,8 @@ export class AssetCreateComponent implements OnInit {
     });
 
 
+
+
   }
 
 
@@ -100,7 +109,7 @@ export class AssetCreateComponent implements OnInit {
 
 
   ngOnInit() {
-
+//Imports fields from the form
     this.form=this.fb.group({
       assetNumber: [null, Validators.compose([Validators.required])],
       assetTyp: [null, Validators.compose([Validators.required])],
@@ -116,71 +125,40 @@ export class AssetCreateComponent implements OnInit {
     console.log('selected', this.selectedValue)
   }
 
-  // importFile(event) {
-
-  //   if (event.target.files.length == 0) {
-  //      console.log("No file selected!");
-  //      return
-  //   }
-
-
-  //     const file: File = event.target.files[0];
-
-
-
-  //     // after here 'file' can be accessed and used for further process
-
-
-
-  //   }
-
-
-
-  submit(event){
-    if (event.target.files.length == 0) {
-      console.log("No file selected!");
-      return
+// imports the image when click in the select image button
+  selectImage(event){
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file
    }
-   var file: File = event.target.files[0];
-   console.log(file)
-
-   const formdata = new FormData();
-   formdata.append('file', file)
-   console.log('data afer form data', file)
-
-   var z = {
-    assetNumber: this.form.value.assetNumber,
-    assetTyp: this.form.value.assetTyp,
-    assetModel: this.form.value.assetModel,
-    types: this.form.value.types,
-    location: this.form.value.location,
-    shelf: this.form.value.shelf,
-    bin: this.form.value.bin,
-    img: file
-   }
-
-    this.dialogRef.close(z);
-
-
-
   }
+
+
+// Submit Button will get the image from the event and will get the remainding fields from the form
+  submit(){
+    //new form data for the picture
+    const formdata = new FormData();
+    //apend the image and the other fields
+    formdata.append('img', this.image)
+    formdata.append('assetNumber', this.form.value.assetNumber)
+    formdata.append('assetTyp', this.form.value.assetTyp)
+    formdata.append('assetModel', this.form.value.assetModel)
+    formdata.append('types', this.form.value.types)
+    formdata.append('location', this.form.value.location)
+    formdata.append('shelf', this.form.value.shelf)
+    formdata.append('bin', this.form.value.bin)
+
+
+
+//this will send the form data to the api on asset.components.ts
+    this.dialogRef.close(formdata);
+
+}
+// this will close the mondal
 
   close(){
     this.dialogRef.close();
   }
-
-//   onClick() {
-//     const fileInput = this.fileInput.nativeElement;
-//     fileInput .onchange = () => {
-//         for (let index = 0; index < fileInput .files.length; index++)
-//         {
-//              const file = fileInput .files[index];
-//              this.files.push({ data: file, inProgress: false, progress: 0});
-//         }
-//           this.upload();
-//     };
-//     fileInput.click();
-// }
 
 
 

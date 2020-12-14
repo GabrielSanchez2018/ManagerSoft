@@ -18,6 +18,7 @@ let manualitemsSchema = mongoose.Schema({
     itemPrice: {type: String, default: false},
     itemType: {type: String},
     date_created: {type: Date, default: new Date()},
+    img:{ type: String}
     //img:{ data: Buffer, contentType: String}
 
 

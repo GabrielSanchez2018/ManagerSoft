@@ -1,33 +1,42 @@
-<form [formGroup]="form" class="example-form">
+<form [formGroup]="form" class="example-form" enctype="multipart/form-data" method="POST" name='img'>
 
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Item Code</mat-label>
-        <input matInput formControlName="itemCode">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Item Description</mat-label>
-        <input matInput formControlName="itemDescription">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Item Price</mat-label>
-        <input matInput formControlName="itemPrice">
-      </mat-form-field></td>
-  
+  <table class="example-full-width" cellspacing="0"><tr>
     <td><mat-form-field class="example-full-width">
-      <mat-label>Item Type</mat-label>
-      <input matInput formControlName="itemType">
+      <mat-label>Item Code</mat-label>
+      <input matInput formControlName="itemCode">
     </mat-form-field></td>
-  </tr>
-  
-  
-  </table>
-  
-  
-  
-    <mat-dialog-actions align="end">
-      <button mat-button (click)="close()">Close</button>
-      <button mat-button  (click)="submit()">Save</button>
-    </mat-dialog-actions>
-  </form>
-  
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Item Description</mat-label>
+      <input matInput formControlName="itemDescription">
+    </mat-form-field></td>
+    <td><mat-form-field class="example-full-width">
+      <mat-label>Item Price</mat-label>
+      <input matInput formControlName="itemPrice">
+    </mat-form-field></td>
+
+  <td><mat-form-field class="example-full-width">
+    <mat-label>Item Type</mat-label>
+    <input matInput formControlName="itemType">
+  </mat-form-field></td>
+</tr>
+
+<td><mat-form-field class="example-full-width">
+  <mat-label>Item Quantity</mat-label>
+  <input matInput formControlName="itemQty">
+</mat-form-field></td>
+
+
+
+
+
+</table>
+
+  <input type="file" name="img" multiple (change)="selectImage($event)"/>
+
+
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Close</button>
+    <button mat-button  (click)="submit()">Save</button>
+  </mat-dialog-actions>
+</form>

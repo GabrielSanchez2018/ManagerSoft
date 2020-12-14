@@ -50,9 +50,9 @@ tr.mat-footer-row {
 .mat-cell{
   border-right-width: 1px;
   border-right-style:double;
-  border-right-color: gray;
-  background-color: #383c42;
-  color: white;
+  border-right-color:white;
+  background-color: white;
+  color: black;
 
 }
 

@@ -111,28 +111,26 @@ openCreateAssetDialog() {
 
   dialogRef.afterClosed().subscribe(data=> {
 
-    dialogRef.afterClosed().subscribe(file =>{
-      console.log('image file',file)
-    })
+
 
     console.log('this si the data ', data)
     if (data) {
 
 
-      console.log('this is asset number',data)
+      console.log('this is asset number',data.img)
 
-      this.http.post('/api/asset/', {
+      this.http.post('/api/asset/', data, {
 
-        headers: {'Content-Type': undefined},
 
-        assetNumber: data.assetNumber,
-        assetTyp: data.assetTyp,
-        assetModel: data.assetModel,
-        types: data.types,
-        location: data.location,
-        shelf: data.shelf,
-        bin: data.bin,
-        img: data.img
+
+        // assetNumber: data.assetNumber,
+        // assetTyp: data.assetTyp,
+        // assetModel: data.assetModel,
+        // types: data.types,
+        // location: data.location,
+        // shelf: data.shelf,
+        // bin: data.bin,
+        // img: data.img
 
 
 

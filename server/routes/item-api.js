@@ -7,6 +7,7 @@ Description: all API's used for Items
 const express = require('express');
 const Item = require('../models/item');
 const router = express.Router();
+const multer = require('multer');
 
 require('dotenv/config');
 var fs = require('fs');
@@ -14,41 +15,24 @@ var fs = require('fs');
  * Upload images
  */
 
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './uploads/')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname + '-' + Date.now())
+      console.log('file',file)
+  }
+
+});
+
+var upload = multer({ storage: storage });
+
+
+ console.log(storage)
 
 
 
-// Image get
-
-// router.get('/', (req, res) => {
-//   Item.find({}, (err, items) => {
-//       if (err) {
-//           console.log(err);
-//       }
-//       else {
-//           // res.render('app', { items: items });
-//       }
-//   });
-// });
-
-// // Uploading the image
-// router.post('/', upload.single('image'), (req, res, next) => {
-
-//   var img = {
-//           data: req.body.filename,
-//           contentType: 'image/png'
-//       }
-
-//   Item.create(img, (err, item) => {
-//       if (err) {
-//           console.log(err);
-//       }
-//       else {
-//           // item.save();
-//           console.log(item)
-
-//       }
-//   });
-// });
 
 
 
@@ -88,7 +72,8 @@ router.post('/', function(req, res, next) {
     itemDescription: req.body.itemDescription,
     itemPrice: req.body.itemPrice,
     itemType: req.body.itemType,
-    itemQty: req.body.itemQty, 
+    itemQty: req.body.itemQty,
+    img: req.file.path
 
   };
   Item.create(i, function(err, Item) {

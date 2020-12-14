@@ -25,8 +25,8 @@ let cartSchema = mongoose.Schema({
     itemPrice: {type: Number},
     itemType: {type: String},
     date_created: {type: Date, default: new Date()},
-    time: {type: String}
-    //img:{ data: Buffer, contentType: String}
+    time: {type: String},
+    img:{ type: String}
 
 
 
