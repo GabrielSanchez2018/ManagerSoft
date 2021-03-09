@@ -10,7 +10,7 @@ Assignment: sign in page
 
 <mat-card class="signinForm">
     <mat-card-title style="text-align: center; font-size: 25px; font-weight: lighter;"
-        class="mat-headline"> <img src="../../../assets/Screen Shot 2020-12-13 at 1.16.44 PM.png"  style="width: 200px; margin-top: 1px;" > &nbsp;&nbsp;
+        class="mat-headline"> <img src="../../../assets/2021-03-05 21_48_35-Free Logo Maker - Get Custom Logo Designs in Minutes _ Looka.png"  style="width: 200px; margin-top: 1px;" > &nbsp;&nbsp;
     </mat-card-title>
 
 
@@ -28,11 +28,13 @@ username/password to proceed
 <mat-card class="mat-elevation-z0">
     <form [formGroup]="form" (ngSubmit)="signin(); form.reset()" #loginForm="ngForm">
         <mat-card-content fxLayout="column" fxLayoutGap="10px">
-            <mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
                 <input type="text" matInput fxFlex [formControl]="form.controls['username']"
                     placeholder="Username" autofocus />
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
                 <input type="password" matInput fxFlex [formControl]="form.controls['password']"
                     placeholder="Password"/>
             </mat-form-field>

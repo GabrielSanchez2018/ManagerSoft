@@ -21,7 +21,9 @@ const CustomerApi = require('./routes/customer-api');
 const CustomerAggregateApi = require('./aggregate/customer-aggregate-api')
 const CartApi = require('./routes/cart-api');
 const ManualItems = require('./routes/manualitems-api');
-
+const Test = require('./routes/test-api');
+const Mail = require('./routes/mail-api');
+const ItemCheckOut = require('./routes/item-check-out-api');
 
 /**
  * App configurations
@@ -80,6 +82,9 @@ app.use('/api/customer', CustomerApi);
 app.use('/api/cart', CartApi);
 app.use('/api/manualitems', ManualItems);
 app.use('/api/customeraggregate',CustomerAggregateApi);
+app.use('/api/test', Test);
+app.use('/api/mail', Mail);
+app.use('/api/itemcheckout', ItemCheckOut);
 /**
  * Create and start server
  */

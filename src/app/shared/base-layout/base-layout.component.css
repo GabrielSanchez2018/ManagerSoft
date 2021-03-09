@@ -46,5 +46,15 @@
 }
 
 .mat-toolbar-row {
-  color: black;
+  color: rgb(202, 17, 17);
+  border-bottom: 1px dotted rgb(240,68,93);
+  
+}
+
+.mat-nav-list .mat-list-item:focus,
+.mat-action-list .mat-list-item:focus,
+.mat-list-option:focus {
+  background:rgb(218, 150, 160) !important;
+  color: white;
+  
 }

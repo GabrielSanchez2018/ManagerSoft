@@ -22,6 +22,8 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import { ChartModule } from 'primeng/chart';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import {MatSortModule} from '@angular/material/sort';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -54,6 +56,9 @@ import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-cre
 import { SellComponent } from './pages/sell/sell.component';
 import { PaydialogComponent } from './dialogs/paydialog/paydialog.component';
 import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-dialog/manual-item-create-dialog.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { UniversalDeviceDetectorService } from './shared/guards/universal-device-detector.service';
+import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +84,8 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
     ItemCreateDialogComponent,
     SellComponent,
     PaydialogComponent,
-    ManualItemCreateDialogComponent
+    ManualItemCreateDialogComponent,
+    CheckOutItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -112,6 +118,8 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
     MatDatepickerModule,
     MatNativeDateModule,
     AngularFileUploaderModule,
+    MatSortModule,
+    MatSlideToggleModule
 
 
 
@@ -124,8 +132,11 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
   ],
   providers: [
     CookieService,
-    RoleGuard
+    RoleGuard,
+    DeviceDetectorService,
+    UniversalDeviceDetectorService
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

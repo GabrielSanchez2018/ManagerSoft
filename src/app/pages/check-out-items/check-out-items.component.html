@@ -1,0 +1,171 @@
+<mat-card>
+    <button style="color: white; background-color: rgb(240,68,93);" mat-raised-button (click)="openCreateAssetDialog()" >
+      <span class="material-icons">
+        add_circle
+        </span>
+  
+      New</button>
+  
+  
+  
+  
+  
+  
+  <mat-card-title style="text-align: center;">Assets</mat-card-title>
+  <mat-form-field style="font-size: larger;">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+ 
+ 
+  <div class="example-table-container">
+  <mat-card-content >
+  
+    
+  <table mat-table  [dataSource]="checkeditems" class="mat-elevation-z8" matSort>
+    
+  
+  <!-- - Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+      <!-- <ng-container matColumnDef="img">
+        <th mat-header-cell *matHeaderCellDef> Image </th>
+        <td mat-cell *matCellDef="let element"><img  class="images" src={{element.img.data}}/>   </td>
+        <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container> -->
+  
+     <ng-container matColumnDef="img">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> IMAGE </th>
+          <td mat-cell *matCellDef="let element"><img src="{{element._id.img}}" width="100px" height="100px" alt=""> </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+     </ng-container>
+  
+  <!-- Position Column -->
+  <ng-container matColumnDef="arrayNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> NO.</th>
+    <td mat-cell *matCellDef="let element">{{element._id.assetnumber}}  </td>
+    <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="assetNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ASSET NUMBER </th>
+    <td mat-cell *matCellDef="let element">{{element._id.assettype}}  </td>
+    <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+  
+  
+  <ng-container matColumnDef="assetTyp">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> MANUFACTURER </th>
+  <td mat-cell *matCellDef="let element">{{element._id.user}} </td>
+  <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="assetModel">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> MODEL </th>
+  <td mat-cell *matCellDef="let element">
+    {{element.count}}</td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="assetTypes">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> TYPE </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.types}}</td>
+      <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef   mat-sort-header> LOCATION </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.location}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="shelf">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> SHELF </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.shelf}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+  
+      <ng-container matColumnDef="bin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> BIN </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.bin}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+  
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.date_created | date }}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+  
+  
+  <ng-container matColumnDef="functions">
+    <th mat-header-cell *matHeaderCellDef>Functions</th>
+  
+    <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="delete(element._id)">
+          <!-- <mat-icon color="accent">delete</mat-icon> -->
+          <span class="material-icons" style="color: lightcoral;">
+            delete_sweep
+            </span>
+        </button>
+    </td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="star" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon>more_vert</mat-icon>
+    </td>
+  </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+    </table>
+    <!-- <mat-paginator [pageSizeOptions]="[2,5, 10, 25, 100]"></mat-paginator> -->
+    
+  
+  </mat-card-content>
+  <mat-paginator [length]="resultsLength" [pageSizeOptions]="[3,5, 10, 25, 100, 200, 300, 500, 1000]"></mat-paginator>
+</div>
+  
+  
+  
+ 
+  <!-- <mat-card>
+    <h1 id="id1">Here is the barcode: <span></span></h1>
+    <h1 id="id2">Here is the barcode: <span></span></h1>
+    <h1 id="demo">Here is the barcode: <span></span></h1>
+  </mat-card> -->
+  <br>
+  <br>
+  
+  
+  </mat-card>
+  
+  
+  
+  <!--
+  <h1>Uplaoded Images</h1>
+      <div>
+          <% items.forEach(function(image) { %>
+          <div>
+              <div>
+                  <img src="data:image/<%=image.img.contentType%>;base64,
+                       <%=image.img.data.toString('base64')%>">
+                  <div>
+                      <h5><%= image.name %></h5>
+                      <p><%= image.desc %></p>
+                  </div>
+              </div>
+          </div>
+          <% }) %>
+      </div>
+  
+   -->
+  

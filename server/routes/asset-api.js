@@ -51,6 +51,8 @@ router.post('/', upload.single('img'), (req, res, next) => {
     location: req.body.location,
     shelf: req.body.shelf,
     bin: req.body.bin,
+    associated_item: req.body.associated_item,
+    associated_location: req.body.associated_location,
     img : req.file.path
   };
   //console.log('req.body',req.file.filename )

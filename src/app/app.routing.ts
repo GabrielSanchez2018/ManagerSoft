@@ -23,6 +23,7 @@ import { ItemCreateDialogComponent } from './dialogs/item-create-dialog/item-cre
 import { SellComponent } from './pages/sell/sell.component';
 import { PaydialogComponent } from './dialogs/paydialog/paydialog.component';
 import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-dialog/manual-item-create-dialog.component';
+import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.component';
 
 export const AppRoutes: Routes = [
   {
@@ -96,6 +97,11 @@ export const AppRoutes: Routes = [
       {
         path: 'asset-find',
         component: AssetFindComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'check-out-items',
+        component: CheckOutItemsComponent,
         canActivate: [RoleGuard]
       },
       {

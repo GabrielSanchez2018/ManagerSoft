@@ -22,6 +22,8 @@ let assetsSchema = mongoose.Schema({
     types: {type:String},
     location: {type: String},
     shelf: {type:String},
+    associated_item: {type: String},
+    associated_location: {type: String},
     bin: {type: String},
     date_created: {type: Date, default: new Date()},
     img:{ type: String}
