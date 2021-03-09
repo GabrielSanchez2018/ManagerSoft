@@ -3,6 +3,7 @@ import { FormBuilder, Validators, NgModel } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { MatFileUploadModule } from 'angular-material-fileupload';
+import { Router } from '@angular/router';
 //import { UploadService } from  '../upload.service';
 
 
@@ -45,9 +46,11 @@ export class AssetCreateComponent implements OnInit {
   files  = [];
   fileUpload: any;
   image: File;
+  asset: any;
 
 
-  constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
+
+  constructor(private router: Router, private fb: FormBuilder, private dialogRef: MatDialogRef<AssetCreateComponent>, private http: HttpClient,) {
     interface types {
       value: string;
       viewValue: string;
@@ -158,6 +161,8 @@ export class AssetCreateComponent implements OnInit {
 
   close(){
     this.dialogRef.close();
+    this.router.navigate(['/assets']);
+    
   }
 
 

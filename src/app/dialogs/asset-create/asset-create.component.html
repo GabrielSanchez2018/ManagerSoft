@@ -1,26 +1,44 @@
-<form [formGroup]="form" class="example-form" style="font-size: larger;" enctype="multipart/form-data" method="POST" name='img'>
+<form [formGroup]="form" class="example-form" style="font-size: 18px;" enctype="multipart/form-data" method="POST" name='img'>
   <mat-form-field class="example-full-width">
     <mat-label>Company (disabled)</mat-label>
     <input matInput disabled value="Greater Omaha Packing">
   </mat-form-field>
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
+  <table class="example-full-width" cellspacing="2px"><tr>
+    <td><mat-form-field>
       <mat-label>Asset Number</mat-label>
       <input matInput formControlName="assetNumber">
-    </mat-form-field></td>
+    </mat-form-field></td> &nbsp;&nbsp;&nbsp;
     <td><mat-form-field class="example-full-width">
       <mat-label>Manufacturer</mat-label>
       <input matInput formControlName="assetTyp">
-    </mat-form-field></td>
+    </mat-form-field></td> &nbsp;&nbsp;&nbsp;
     <td><mat-form-field class="example-full-width">
       <mat-label>Model</mat-label>
       <input matInput formControlName="assetModel">
-    </mat-form-field></td>
+    </mat-form-field></td> 
   </tr></table>
 
   <mat-form-field appearance="fill">
     <mat-label>Asset Type</mat-label>
+    <mat-select [formControl]="form.controls['types']" name="types">
+      <mat-option *ngFor="let type of types" [value]="type.text">
+        {{type.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field appearance="fill">
+    <mat-label>Associated Location</mat-label>
+    <mat-select [formControl]="form.controls['types']" name="types">
+      <mat-option *ngFor="let type of types" [value]="type.text">
+        {{type.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;
+  <mat-form-field appearance="fill">
+    <mat-label>Associated Device</mat-label>
     <mat-select [formControl]="form.controls['types']" name="types">
       <mat-option *ngFor="let type of types" [value]="type.text">
         {{type.text}}

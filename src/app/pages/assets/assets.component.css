@@ -1,4 +1,4 @@
-.mat-card{
+.container{
   width: 100%;
   margin: 0 auto;
   margin-top: 2%;
@@ -21,7 +21,7 @@ table {
   margin-top: 1%;
 }
 .ng-container, th, td, .mat-header-cell {
-  text-align: center;
+  text-align: left;
   font-size: 15px;
  
 

@@ -133,21 +133,10 @@ openCreateAssetDialog() {
       this.http.post('/api/asset/', data, {
 
 
-
-        // assetNumber: data.assetNumber,
-        // assetTyp: data.assetTyp,
-        // assetModel: data.assetModel,
-        // types: data.types,
-        // location: data.location,
-        // shelf: data.shelf,
-        // bin: data.bin,
-        // img: data.img
-
-
-
       }).subscribe(res => {
         console.log("this is after sucribing", res)
         this.assets = this.assets.concat([res]);
+        this.assets.concat()
 
       }, err => {
         console.log(err);
