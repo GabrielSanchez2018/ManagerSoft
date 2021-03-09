@@ -106,7 +106,10 @@ applyFilter(filterValue: string) {
 
 openCreateAssetDialog() {
   const dialogRef = this.dialog.open(AssetCreateComponent, {
-    disableClose: true
+    
+    width: '850px',
+    disableClose: true,
+    
   });
 
   dialogRef.afterClosed().subscribe(data=> {
