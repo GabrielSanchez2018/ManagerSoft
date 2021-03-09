@@ -1,5 +1,5 @@
 .mat-card{
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 2%;
 
@@ -16,28 +16,28 @@ table {
 }
 
 .mat-card-content {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 1%;
 }
 .ng-container, th, td, .mat-header-cell {
   text-align: center;
   font-size: 15px;
-  color: black;
+ 
 
 }
 
 
 
 .mat-header-cell {
-  background-color: #104c91;
-  color:white;
-  border-right-width: 1px;
-  border-right-color: lightgray;
+  background-color: rgb(255, 255, 255);
+ 
+  /* border-right-width: 1px;
+  border-right-color: lightgray; */
 }
-.mat-cell, .mat-header-cell{
+/* .mat-cell, .mat-header-cell{
   border-right-width: 1px;
-  border-right-style:double;
-  border-right-color: lightgray;
+  border-right-style:double; 
+   border-right-color: lightgray; 
 
-}
+} */

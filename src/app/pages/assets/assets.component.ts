@@ -6,8 +6,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AssetCreateComponent } from '../../dialogs/asset-create/asset-create.component';
 import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.component';
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
-import { MatPaginator, MatSort ,MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort ,MatTableDataSource, MatSortModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 
@@ -17,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './assets.component.html',
   styleUrls: ['./assets.component.css']
 })
-export class AssetsComponent implements OnInit {
+export class AssetsComponent implements AfterViewInit {
   dataSource: any;
 
 
@@ -40,7 +41,8 @@ export class AssetsComponent implements OnInit {
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date','functions'];
   inspectionDetails: any;
   img: any;
-
+  stepper: any;
+  matStepperNext: any;
 
 
 
@@ -49,6 +51,10 @@ export class AssetsComponent implements OnInit {
   constructor(private http: HttpClient, private dialog: MatDialog, private domSanitizer: DomSanitizer) {
     this.http.get('/api/asset').subscribe(res => {
       this.assets = res;
+
+      this.assets = new MatTableDataSource(this.assets);
+      this.assets.paginator = this.paginator;
+      this.assets.sort = this.sort;
       console.log(this.assets)
 
       // var img = this.assets.img
@@ -63,15 +69,17 @@ export class AssetsComponent implements OnInit {
   }
 
 
-  @Pipe({name: 'safeHtml'})
+
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
+   
 
-
-  transform(html) {
-    return this.domSanitizer.bypassSecurityTrustResourceUrl(html);
-
+  ngAfterViewInit() {
+    this.assets.paginator = this.paginator;
+    this.assets.sort = this.sort;
   }
+
+
 
 
 
@@ -96,10 +104,10 @@ ngOnInit(){
 }
 
 applyFilter(filterValue: string) {
-  this.dataSource.filter = filterValue.trim().toLowerCase();
+  this.assets.filter = filterValue.trim().toLowerCase();
 
-  if (this.dataSource.paginator) {
-    this.dataSource.paginator.firstPage();
+  if (this.assets.paginator) {
+    this.assets.paginator.firstPage();
   }
 }
 //Create new asset

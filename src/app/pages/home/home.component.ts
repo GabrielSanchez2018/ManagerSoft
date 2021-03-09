@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   bydates: any[];
   generateReport: any;
   report: any[];
+  checkout: Object;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private changeDetectorRefs: ChangeDetectorRef, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -33,9 +34,9 @@ export class HomeComponent implements OnInit {
      * Graph
      */
 
-    this.http.get('/api/customer/purchases-graph').subscribe(res => {
-      this.customergraph = res;
-      console.log(this.customergraph)
+    this.http.get('/api/itemcheckout').subscribe(res => {
+      this.checkout = res;
+      console.log(this.checkout)
 
     //   for (const item of this.customergraph) {
     //     this.labels.push(item._id.title);

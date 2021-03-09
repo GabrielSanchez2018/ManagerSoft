@@ -10,6 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AssetCreateComponent implements OnInit {
 
+
   form: FormGroup;
   id: any;
   slice: any;
