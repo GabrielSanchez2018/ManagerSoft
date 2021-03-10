@@ -24,7 +24,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import {MatSortModule} from '@angular/material/sort';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -119,7 +119,8 @@ import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.
     MatNativeDateModule,
     AngularFileUploaderModule,
     MatSortModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
 
 
 

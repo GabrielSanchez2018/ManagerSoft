@@ -8,6 +8,8 @@ import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.compon
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
 import { MatPaginator, MatSort ,MatTableDataSource, MatSortModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 
 
@@ -43,8 +45,9 @@ export class AssetsComponent implements AfterViewInit {
   img: any;
   stepper: any;
   matStepperNext: any;
+  showSpinner: boolean;
 
-
+  isLoading: boolean = true;
 
 
 
@@ -80,28 +83,23 @@ export class AssetsComponent implements AfterViewInit {
   }
 
 
-
+ 
+ 
+  
 
 
 ngOnInit(){
-  // this.http.get('/api/asset').subscribe(res => {
-
-  // this.assets = res;
-
-  // this.assets = new MatTableDataSource(this.assets);
-
-  // this.assets.paginator = this.paginator;
-  // this.assets.sort = this.sort;
-  // this.assets = this.concat([this.paginator]);
-
-  //   console.log(this.assets);
-  // }, err => {
-  //   console.log(err);
-  // });
+  of(this.assets).pipe(delay(1000))
+     .subscribe(data => {
+     
+       this.isLoading = false;
+       this.dataSource = data
+     }, error => this.isLoading = false);
+  }
 
 
 
-}
+
 
 applyFilter(filterValue: string) {
   this.assets.filter = filterValue.trim().toLowerCase();

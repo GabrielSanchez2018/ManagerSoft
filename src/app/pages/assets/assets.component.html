@@ -21,6 +21,8 @@
 </mat-form-field>
 </div>
 
+
+
 <div class="mat-elevation-z8" style="width: 100%;">
 <table mat-table  [dataSource]="assets" class="mat-elevation-z8" matSort>
   
@@ -129,8 +131,17 @@
 
 
   </table>
+ 
   <!-- <mat-paginator [pageSizeOptions]="[2,5, 10, 25, 100]"></mat-paginator> -->
   <mat-paginator [pageSizeOptions]="[3,5, 10, 25, 100, 200, 300, 500, 1000]"></mat-paginator>
+ 
+
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-progress-spinner
+      color="primary" 
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
 
 </div>
 

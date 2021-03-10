@@ -28,6 +28,8 @@ export class CheckOutItemsComponent implements OnInit {
     });
    }
 
+   
+
    @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
    @ViewChild(MatSort, {static: false}) sort: MatSort;
     
@@ -46,3 +48,4 @@ export class CheckOutItemsComponent implements OnInit {
     }
   }
 }
+
