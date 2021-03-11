@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { AppRoutes } from './app.routing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatFormFieldModule, MatFormField, } from '@angular/material/form-field';
@@ -25,6 +25,8 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 import {MatSortModule} from '@angular/material/sort';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -59,6 +61,7 @@ import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-di
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { UniversalDeviceDetectorService } from './shared/guards/universal-device-detector.service';
 import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.component';
+import { InterceptorService } from './loader/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -120,7 +123,9 @@ import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.
     AngularFileUploaderModule,
     MatSortModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule, 
+    MatProgressBarModule,
+    MatExpansionModule
 
 
 
@@ -135,7 +140,9 @@ import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.
     CookieService,
     RoleGuard,
     DeviceDetectorService,
-    UniversalDeviceDetectorService
+    UniversalDeviceDetectorService,
+   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+    
   ],
   
   bootstrap: [AppComponent]

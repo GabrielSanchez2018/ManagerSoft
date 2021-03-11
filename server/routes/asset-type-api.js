@@ -52,7 +52,7 @@ router.post('/', function(req, res, next) {
 
 //Update AssetType
 router.put('/:AssetTypeId', function(req, res, next) {
-  AssetTypes.findOne({'_id': req.params.AssetTypeId}, function(err, AssetType) {
+  AssetType.findOne({'_id': req.params.AssetTypeId}, function(err, AssetType) {
     if (err) {
       console.log(err);
       return next(err);
@@ -77,7 +77,7 @@ router.put('/:AssetTypeId', function(req, res, next) {
 
 // Delete AssetType
 router.delete('/:AssetTypeId', function(req, res, next) {
-  AssetTypes.findOneAndDelete({'_id': req.params.AssetTypeId}, function(err, AssetType) {
+  AssetType.findOneAndDelete({'_id': req.params.AssetTypeId}, function(err, AssetType) {
     if (err) {
       console.log(err);
       return next(err);

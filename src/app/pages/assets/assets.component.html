@@ -131,17 +131,16 @@
 
 
   </table>
- 
+ <div class="loader-container" *ngIf="loaderService.isLoading | async">
+
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+ </div>
+
   <!-- <mat-paginator [pageSizeOptions]="[2,5, 10, 25, 100]"></mat-paginator> -->
-  <mat-paginator [pageSizeOptions]="[3,5, 10, 25, 100, 200, 300, 500, 1000]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100, 200, 300, 500, 1000]"></mat-paginator>
  
 
-  <div *ngIf="isLoading" class="spinner-container">
-    <mat-progress-spinner
-      color="primary" 
-      mode="indeterminate">
-    </mat-progress-spinner>
-  </div>
+  
 
 </div>
 
@@ -160,21 +159,5 @@
 
 
 
-<!--
-<h1>Uplaoded Images</h1>
-    <div>
-        <% items.forEach(function(image) { %>
-        <div>
-            <div>
-                <img src="data:image/<%=image.img.contentType%>;base64,
-                     <%=image.img.data.toString('base64')%>">
-                <div>
-                    <h5><%= image.name %></h5>
-                    <p><%= image.desc %></p>
-                </div>
-            </div>
-        </div>
-        <% }) %>
-    </div>
 
- -->
+

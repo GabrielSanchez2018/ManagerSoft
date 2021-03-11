@@ -8,8 +8,9 @@ import { AssetTypeComponent } from 'src/app/dialogs/asset-type/asset-type.compon
 import { ServiceCreateDeleteDialogComponent } from 'src/app/dialogs/service-create-delete-dialog/service-create-delete-dialog.component';
 import { MatPaginator, MatSort ,MatTableDataSource, MatSortModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { LoaderService } from 'src/app/loader/loader.service';
 
 
 
@@ -23,12 +24,14 @@ import { delay } from 'rxjs/operators';
 export class AssetsComponent implements AfterViewInit {
   dataSource: any;
 
-
+ 
 
    @ViewChild(MatPaginator, {static: false}) Component
 
 
-
+   resultsLength = 0;
+   isLoadingResults = true;
+   isRateLimitReached = false;
 
 
 
@@ -47,11 +50,12 @@ export class AssetsComponent implements AfterViewInit {
   matStepperNext: any;
   showSpinner: boolean;
 
-  isLoading: boolean = true;
 
 
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private domSanitizer: DomSanitizer) {
+  constructor(private http: HttpClient, private dialog: MatDialog, private domSanitizer: DomSanitizer, public loaderService:LoaderService) {
+   
+   setTimeout(() =>{
     this.http.get('/api/asset').subscribe(res => {
       this.assets = res;
 
@@ -65,6 +69,8 @@ export class AssetsComponent implements AfterViewInit {
     }, err => {
       console.log(err);
     });
+   }, 1000)
+   
 
 
 
@@ -89,12 +95,7 @@ export class AssetsComponent implements AfterViewInit {
 
 
 ngOnInit(){
-  of(this.assets).pipe(delay(1000))
-     .subscribe(data => {
-     
-       this.isLoading = false;
-       this.dataSource = data
-     }, error => this.isLoading = false);
+
   }
 
 
