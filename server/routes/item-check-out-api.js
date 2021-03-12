@@ -61,10 +61,11 @@ router.get('/itemgraph', function(req, res, next) {
           "assettype": "$checkoutasset.assetTyp",
           "assetmodel": "$checkoutasset.assetModel",
           "img" : "$checkoutasset.img",
-          "user": "$username"
+          "user": "$username",
+          // "quantity": "$quantity"
 
         },
-        // "totalprice": {"$sum": "$lineItems.itemPrice" },
+        "quantity": {"$sum": "$quantity" },
         "count": {"$sum": 1},
       }
     }, {"$sort": {"_id.assetmodel": 1}},
@@ -110,6 +111,7 @@ router.post('/', function(req, res, next) {
     checkoutasset: req.body.checkoutasset,
     date_created: req.body.date_created,
     username: req.body.username,
+    quantity: req.body.quantity
     //img: req.file.path
 
   };

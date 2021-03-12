@@ -62,6 +62,8 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { UniversalDeviceDetectorService } from './shared/guards/universal-device-detector.service';
 import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.component';
 import { InterceptorService } from './loader/interceptor.service';
+import { CheckInItemsComponent } from './pages/check-in-items/check-in-items.component';
+import { CheckInComponent } from './pages/check-in/check-in.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import { InterceptorService } from './loader/interceptor.service';
     SellComponent,
     PaydialogComponent,
     ManualItemCreateDialogComponent,
-    CheckOutItemsComponent
+    CheckOutItemsComponent,
+    CheckInItemsComponent,
+    CheckInComponent
   ],
   imports: [
     BrowserModule,

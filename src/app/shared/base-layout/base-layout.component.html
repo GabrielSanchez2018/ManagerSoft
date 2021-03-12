@@ -53,6 +53,13 @@
             <span style="color: black;">&nbsp;&nbsp;Check out items</span>
         </a>
 
+        <a mat-list-item *ngIf='show' [routerLink]="'/check-in-items'">
+          <span class="material-icons">
+            assignment_turned_in
+            </span>
+            <span style="color: black;">&nbsp;&nbsp;Check-In Items</span>
+        </a>
+
         <a mat-list-item *ngIf='show' [routerLink]="'/sell'">
           <span class="material-icons">
             assignment_turned_in
@@ -65,6 +72,13 @@
             pie_chart
             </span>
             <span style="color: black;">&nbsp;&nbsp;Check-Out</span>
+        </a>
+
+        <a mat-list-item *ngIf='show' [routerLink]="'/check-in'">
+          <span class="material-icons">
+            pie_chart
+            </span>
+            <span style="color: black;">&nbsp;&nbsp;Check-In</span>
         </a>
 
 

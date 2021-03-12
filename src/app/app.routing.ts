@@ -24,6 +24,8 @@ import { SellComponent } from './pages/sell/sell.component';
 import { PaydialogComponent } from './dialogs/paydialog/paydialog.component';
 import { ManualItemCreateDialogComponent } from './dialogs/manual-item-create-dialog/manual-item-create-dialog.component';
 import { CheckOutItemsComponent } from './pages/check-out-items/check-out-items.component';
+import { CheckInItemsComponent } from './pages/check-in-items/check-in-items.component';
+import { CheckInComponent } from './pages/check-in/check-in.component';
 
 export const AppRoutes: Routes = [
   {
@@ -58,6 +60,7 @@ export const AppRoutes: Routes = [
         component: AssetCreateComponent,
         canActivate: [RoleGuard]
       },
+     
       {
         path: 'asset-type',
         component: AssetTypeComponent,
@@ -100,8 +103,18 @@ export const AppRoutes: Routes = [
         canActivate: [RoleGuard]
       },
       {
+        path: 'check-in',
+        component: CheckInComponent,
+        canActivate: [RoleGuard]
+      },
+      {
         path: 'check-out-items',
         component: CheckOutItemsComponent,
+        canActivate: [RoleGuard]
+      },
+      {
+        path: 'check-in-items',
+        component: CheckInItemsComponent,
         canActivate: [RoleGuard]
       },
       {

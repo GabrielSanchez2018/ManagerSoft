@@ -104,27 +104,21 @@
       </ng-container>
 
 
+
+
 <ng-container matColumnDef="functions">
-  <th mat-header-cell *matHeaderCellDef>FUNCTIONS</th>
+  <th mat-header-cell *matHeaderCellDef>Functions</th>
 
   <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="openCreateAssetDialog(element._id)">
+          <mat-icon color="accent">edit</mat-icon>
+      </button>
       <button mat-icon-button (click)="delete(element._id)">
-        <!-- <mat-icon color="accent">delete</mat-icon> -->
-        <span class="material-icons" style="color: lightcoral;">
-          delete_sweep
-          </span>
+        <mat-icon color="accent">delete</mat-icon>
       </button>
   </td>
-  <td mat-footer-cell *matFooterCellDef> </td>
 </ng-container>
 
-
-<ng-container matColumnDef="star" stickyEnd>
-  <th mat-header-cell *matHeaderCellDef></th>
-  <td mat-cell *matCellDef="let element">
-    <mat-icon>more_vert</mat-icon>
-  </td>
-</ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

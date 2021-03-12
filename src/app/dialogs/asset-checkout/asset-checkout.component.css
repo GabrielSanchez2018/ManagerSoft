@@ -21,8 +21,8 @@ table {
   margin-top: 1%;
 }
 .ng-container, th, td, .mat-header-cell {
-  text-align: center;
-  font-size: 15px;
+  text-align: left;
+  font-size: 12px;
   color: black;
 
 }
@@ -42,4 +42,13 @@ table {
   margin: 8px 0;
   display: block;
   font-size: large;
+}
+
+input[type=number] {
+  height: 30px;
+}
+
+input[type=number]:hover::-webkit-inner-spin-button {  
+  width: 14px;
+  height: 30px;
 }

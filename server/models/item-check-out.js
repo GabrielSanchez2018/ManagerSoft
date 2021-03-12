@@ -28,7 +28,8 @@ let itemCheckOutSchema = mongoose.Schema({
     checkoutasset: {type: Array},
     date_created: {type: Date, default: new Date()},
     username: {type: String},
-    isCheckedOut: {type: Boolean, default: true}
+    isCheckedOut: {type: Boolean, default: true},
+    quantity:{type: Number, default: 1}
    // img:{ type: String}
 
 

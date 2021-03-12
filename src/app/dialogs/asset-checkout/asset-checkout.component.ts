@@ -10,6 +10,7 @@ import { MatCheckboxChange, MatPaginator, MatSort ,MatTableDataSource } from '@a
 import { CookieService } from 'ngx-cookie-service';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { error } from '@angular/compiler/src/util';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -20,7 +21,7 @@ import { error } from '@angular/compiler/src/util';
 })
 export class AssetCheckoutComponent implements OnInit {
   tickets: string[] = ['ticket' ];
-  isChecked = true;
+  isChecked = false;
   selectedValue: boolean;
   displayedColumns = ['assetNumber',
   'assetTyp', 'assetModel', 'assetTypes', 'location', 'shelf','bin', 'date'];
@@ -29,8 +30,9 @@ export class AssetCheckoutComponent implements OnInit {
   form: any;
   private _id: string;
   username: string;
+  quantity: any;
 
-  constructor(private http: HttpClient, private dialogRef: MatDialogRef<AssetCheckoutComponent>, private cookieService: CookieService) {
+  constructor(private fb: FormBuilder,private http: HttpClient, private dialogRef: MatDialogRef<AssetCheckoutComponent>, private cookieService: CookieService) {
    
 
     
@@ -57,7 +59,24 @@ export class AssetCheckoutComponent implements OnInit {
 
   ngOnInit() {
     
+    this.form=this.fb.group({
+      assetNumber: [null, Validators.compose([Validators.required])],
+      assetTyp: [null, Validators.compose([Validators.required])],
+      assetModel: [null, Validators.compose([Validators.required])],
+      types: [null, Validators.compose([Validators.required])],
+      location: [null, Validators.compose([Validators.required])],
+      shelf: [null, Validators.compose([Validators.required])],
+      bin: [null, Validators.compose([Validators.required])],
+      img: [null, Validators.compose([Validators.required])],
+      quantity: [null, Validators.compose([Validators.required])],
 
+
+    });
+    console.log('this asset type', this.form)
+    console.log('selected', this.selectedValue)
+    console.log('selected', this.form.value.quantity
+    )
+  
   }
   
   @Output()
@@ -96,7 +115,8 @@ export class AssetCheckoutComponent implements OnInit {
     this.http.post('/api/itemcheckout/', {
 
         checkoutasset: this.asset,
-        username: this.username
+        username: this.username,
+        quantity:  this.form.value.quantity
       // assetNumber: data.assetNumber,
       // assetTyp: data.assetTyp,
       // assetModel: data.assetModel,
